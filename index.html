@@ -1,13 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>COP 4331 - Team 1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Hello, Welcome to Team 1 - COP 4331 Fall 2024!</h1>
-    <h3>This is our small project - Contact Manager</h3>
-    <p>Hello! This is a simple HTML page. Feel free to explore and learn more about what we offer.</p>
-    <p>Stay tuned for more updates!</p>
+
+<div class="container">
+    <h1>Welcome to Contact Manager, COP 4331 Team One!</h1>
+    <div id="signup" class="auth-form">
+        <h2>Sign Up</h2>
+        <div class="message hidden" id="signup-message">Sign up successful! You can now log in.</div>
+        <input type="text" id="signup-username" placeholder="Username" required>
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <button onclick="signup()">Sign Up</button>
+    </div>
+
+    <div id="login" class="auth-form hidden">
+        <h2>Login</h2>
+        <div class="message hidden" id="login-message">Logged in successfully!</div>
+        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="contacts-list" class="contacts hidden">
+        <h2>Contacts</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody id="contacts-body">
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>123-456-7890</td>
+                </tr>
+                <tr>
+                    <td>Jane</td>
+                    <td>Smith</td>
+                    <td>098-765-4321</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
+
 
