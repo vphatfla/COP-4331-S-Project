@@ -31,3 +31,12 @@ function login() {
     }
 }
 
+function toggleTwoVisibility(id1, id2) {
+    const e1 = document.getElementById(id1);
+    const e2 = document.getElementById(id2);
+    const s1 = window.getComputedStyle(e1);
+    const s2 = window.getComputedStyle(e2);
+    const temp = s1.display
+    e1.style.display = s2.display
+    e2.style.display = temp;
+}
