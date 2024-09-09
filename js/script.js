@@ -1,3 +1,5 @@
+const BASE_URL='https://www.contactmanagerteamone.one/api/'
+
 let users = [];
 
 function signup() {
@@ -14,21 +16,43 @@ function signup() {
     }
 }
 
+
 function login() {
     const username = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
 
-    const userExists = users.find(user => user.username === username && user.password === password);
+    // Create the payload
+    const payload = {
+        username: username,
+        password: password
+    };
 
-    if (userExists) {
-        document.getElementById("login-message").classList.remove("hidden");
-        setTimeout(() => {
-            document.getElementById("login").classList.add("hidden");
-            document.getElementById("contacts-list").classList.remove("hidden");
-        }, 1000);
-    } else {
-        alert("Invalid login credentials");
-    }
+    // Send login data to the API
+    fetch(BASE_URL + 'login.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.token) {
+            // If login is successful, store the JWT in localStorage
+            localStorage.setItem('jwt', data.token);
+
+            // Redirect to the dashboard
+            window.location.href = 'dashboard.html';
+        } else {
+            // Show the error message if login fails
+            // document.getElementById("login-error").textContent = "Invalid login credentials";
+            document.getElementById("login-error").classList.remove("hidden");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while logging in. Please try again.');
+    });
 }
 
 function toggleTwoVisibility(id1, id2) {
