@@ -18,7 +18,12 @@ function openTab(evt, tab) {
   document.getElementById(tab).style.display = "block";
   evt.currentTarget.className += " active";
 
+  //reset tabs
   clearInput();
+  const arr = document.getElementsByClassName("lists");
+  for(let i = 0; i < arr.length; i++){
+    arr[i].innerHTML='';
+  }
 }
 function clearInput(){
   const arr = document.getElementsByClassName("inputClear");
@@ -40,6 +45,9 @@ function searchButton(){
   
   searchList += createList()
   searchList += createList();
+
+  //if no contacts matches srch, display no match message
+
   document.getElementById("searchList").innerHTML=searchList;
 }
 function createList(){
@@ -49,6 +57,62 @@ function createList(){
   list+="first last</br>";
   list+="email@email.com</br>";
   list+="Phone Number</br>";
+  list += "</div>";
+  return list;
+}
+function upSearchButton(){
+  //let srch = document.getElementById("upSearchText").value;
+  let updateList = "";
   
-  return list += "</div>";
+  //if no contacts matches srch, display no match message
+  
+  updateList += createUpdateList();
+  updateList += createUpdateList();
+  
+  document.getElementById("updateList").innerHTML=updateList; 
+}
+function createUpdateList(){
+  let list = "<div class='tabcontainer'>";
+  
+  //get name, email, and phone from contacts and display in input box
+  list+=inputBox("name");
+  list+=inputBox("email");
+  list+=inputBox("phone");
+  list+="<button type='button' class='buttons' onclick='updateContactButton()'>Update</button></br>";
+  list+="</div>";
+  return list;
+}
+function inputBox(value){
+  let str = "<input type='text' class='inputClear' id = 'upSearchText' value='";
+  str += value;
+  return str + "'/></br>";
+}
+function delSearchButton(){
+  //let srch = document.getElementById("delSearchText").value;
+  let deleteList = "";
+  
+  //if no contacts matches srch, display no match message
+  
+  deleteList += createDeleteList();
+  deleteList += createDeleteList();
+  
+  document.getElementById("deleteList").innerHTML=deleteList;
+}
+function createDeleteList(){
+  let list = "<div class='tabcontainer'>";
+  list+="first last</br>";
+  list+="email@email.com</br>";
+  list+="Phone Number</br>";
+  list+=createDeleteButton();
+  return list + "</div>";
+}
+function createDeleteButton(){
+  let str = "<button type='button' class='buttons' onclick='deleteContactButton()'>Delete</button></br>"
+  return str;
+}
+function deleteContactButton(){
+  document.getElementById("deleteResult").innerHTML="Delete Successful";
+}
+function updateContactButton(){
+  document.getElementById("updateResult").innerHTML="Update Saved";
 }
