@@ -1,4 +1,8 @@
 <?php
+// Load environment variables
+require_once 'vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 // Set headers for JSON response
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: *");
@@ -50,13 +54,20 @@ if (!empty($data->username) && !empty($data->password)) {
 		// temporarily do not use TOKEN/JWT    
 		// Create a token (JWT is often used, but this is a simple example)
                 // $token = bin2hex(random_bytes(16)); // Generate a random token
-
+		$secretKey = $_ENV['JWT_SECRET'];
+                $payload = [
+                    'iss' => 'your-website.com',
+                    'iat' => time(),
+                    'exp' => time() + (60 * 60),  // Token valid for 1 hour
+                    'sub' => $user['id']
+                ];
+                $jwt = \Firebase\JWT\JWT::encode($payload, $secretKey, 'HS256');	
                 // Respond with success
                 http_response_code(200);
                 echo json_encode([
                     "message" => "Login successful",
                     "user_id" => $user['id'],
-                    // "token" => $token
+                    "token" => $jwt
                 ]);
             } else {
                 // Invalid password
