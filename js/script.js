@@ -5,15 +5,41 @@ let users = [];
 function signup() {
     const username = document.getElementById("signup-username").value;
     const password = document.getElementById("signup-password").value;
+    const retypePassword = document.getElementById("retyped-signup-password").value;
+	if (password !== retypePassword) {
+		document.getElementById("signup-password-error").classList.remove("hidden");
+		return;
+	}
+	else {
+		document.getElementById("signup-password-error").style.display= 'none';
+	}
+	const payload = {
+		username: username,
+		password: password
+	}
 
-    if (username && password) {
-        users.push({ username, password });
-        document.getElementById("signup-message").classList.remove("hidden");
-        setTimeout(() => {
-            document.getElementById("signup").classList.add("hidden");
-            document.getElementById("login").classList.remove("hidden");
-        }, 1000);
-    }
+	// Send sign up data to the API
+    fetch(BASE_URL + 'signup.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+		if (response.status !== 201) {
+     		throw new Error('Request failed');
+    	}
+
+		document.getElementById("signup-message").classList.remove("hidden");
+		toggleTwoVisibility('signup', 'login');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById("signup-error").classList.remove("hidden");
+		// alert('An error occurred while logging in. Please try again.');
+    });
+    
 }
 
 
