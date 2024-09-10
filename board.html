@@ -34,13 +34,16 @@
         <h3>Search</h3>
         <input type="text" class="inputClear" id = "searchText" placeholder="Search Here" /><br />
         <button type="button" class="buttons" id = "searchButton" onclick="searchButton()">Search</button>
-        <p id="searchList">
-        </p>
+        <p id="searchList" class="lists"></p>
     </div>
 
     <div id="Update" class="tabcontent">
         <h3>Update</h3>
         <!-- search -->
+        <input type="text" class="inputClear" id = "upSearchText" placeholder="Search Here" /><br />
+        <button type="button" class="buttons" id = "upSearchButton" onclick="upSearchButton()">Search</button>
+        <p id="updateList" class="lists"></p>
+        <span id="updateResult"></span>
         <!-- select contact to update -->
         <!-- update contact -->
     </div>
@@ -48,6 +51,10 @@
     <div id="Delete" class="tabcontent">
         <h3>Delete</h3>
         <!-- search -->
+        <input type="text" class="inputClear" id = "delSearchText" placeholder="Search Here" /><br />
+        <button type="button" class="buttons" id = "delSearchButton" onclick="delSearchButton()">Search</button>
+        <p id="deleteList" class="lists"></p>
+        <span id="deleteResult"></span>
         <!-- select contact to delete -->
         <!-- delete contact -->
     </div>
