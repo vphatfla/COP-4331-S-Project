@@ -1,8 +1,8 @@
 <html>
 <head>
     <title>Contact Manager</title>
-    <script type="text/javascript" src="dashboard.js"></script>
-    <link href="dashboard.css" rel="stylesheet">
+    <script type="text/javascript" src="js/dashboard.js"></script>
+    <link href="css/dashboard.css" rel="stylesheet">
 </head>
 <body>
 
@@ -27,34 +27,34 @@
         <input type="text" class="inputClear" id = "addPhone" placeholder="Phone Number" /><br />
         <span id="phoneExist"></span>
         <button type="button" class="buttons" id = "addButton" onclick="addButton()">Add</button>
-        <span id="addResult"></span>
+        <span id="addResult" class="results"></span>
     </div>
     
     <div id="Search" class="tabcontent">
-        <h3>Search</h3>
+        <h3>Search contacts</h3>
         <input type="text" class="inputClear" id = "searchText" placeholder="Search Here" /><br />
         <button type="button" class="buttons" id = "searchButton" onclick="searchButton()">Search</button>
         <p id="searchList" class="lists"></p>
     </div>
 
     <div id="Update" class="tabcontent">
-        <h3>Update</h3>
+        <h3>Update contacts</h3>
         <!-- search -->
         <input type="text" class="inputClear" id = "upSearchText" placeholder="Search Here" /><br />
         <button type="button" class="buttons" id = "upSearchButton" onclick="upSearchButton()">Search</button>
         <p id="updateList" class="lists"></p>
-        <span id="updateResult"></span>
+        <span id="updateResult" class="results"></span>
         <!-- select contact to update -->
         <!-- update contact -->
     </div>
 
     <div id="Delete" class="tabcontent">
-        <h3>Delete</h3>
+        <h3>Delete a contact</h3>
         <!-- search -->
         <input type="text" class="inputClear" id = "delSearchText" placeholder="Search Here" /><br />
         <button type="button" class="buttons" id = "delSearchButton" onclick="delSearchButton()">Search</button>
         <p id="deleteList" class="lists"></p>
-        <span id="deleteResult"></span>
+        <span id="deleteResult" class="results"></span>
         <!-- select contact to delete -->
         <!-- delete contact -->
     </div>

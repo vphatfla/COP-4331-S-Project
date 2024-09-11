@@ -20,15 +20,25 @@ function openTab(evt, tab) {
 
   //reset tabs
   clearInput();
-  const arr = document.getElementsByClassName("lists");
-  for(let i = 0; i < arr.length; i++){
-    arr[i].innerHTML='';
-  }
+  resetLists();
+  resetResults();
 }
 function clearInput(){
   const arr = document.getElementsByClassName("inputClear");
   for(let i = 0; i < arr.length; i++){
     arr[i].value='';
+  }
+}
+function resetLists(){
+  const arr = document.getElementsByClassName("lists");
+  for(let i = 0; i < arr.length; i++){
+    arr[i].innerHTML='';
+  }
+}
+function resetResults(){
+  const arr = document.getElementsByClassName("results");
+  for(let i = 0; i < arr.length; i++){
+    arr[i].innerHTML='';
   }
 }
 function addButton(){
@@ -57,15 +67,15 @@ function createList(){
   list+="first last</br>";
   list+="email@email.com</br>";
   list+="Phone Number</br>";
-  list += "</div>";
-  return list;
+  
+  return list + "</div>";
 }
 function upSearchButton(){
   //let srch = document.getElementById("upSearchText").value;
   let updateList = "";
   
   //if no contacts matches srch, display no match message
-  
+
   updateList += createUpdateList();
   updateList += createUpdateList();
   
@@ -79,8 +89,8 @@ function createUpdateList(){
   list+=inputBox("email");
   list+=inputBox("phone");
   list+="<button type='button' class='buttons' onclick='updateContactButton()'>Update</button></br>";
-  list+="</div>";
-  return list;
+  
+  return list + "</div>";
 }
 function inputBox(value){
   let str = "<input type='text' class='inputClear' id = 'upSearchText' value='";
@@ -100,14 +110,16 @@ function delSearchButton(){
 }
 function createDeleteList(){
   let list = "<div class='tabcontainer'>";
+  
   list+="first last</br>";
   list+="email@email.com</br>";
   list+="Phone Number</br>";
   list+=createDeleteButton();
+  
   return list + "</div>";
 }
 function createDeleteButton(){
-  let str = "<button type='button' class='buttons' onclick='deleteContactButton()'>Delete</button></br>"
+  let str = "<button type='button' class='buttons' onclick='deleteContactButton()'>Delete</button></br>";
   return str;
 }
 function deleteContactButton(){
