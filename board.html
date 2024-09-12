@@ -20,66 +20,66 @@
     <!-- Tab content -->
     <div id="Add" class="tabcontent">
         <h3>Add a new contact</h3>
-        <input type="text" class="inputClear" id = "addFname" placeholder="First Name" /><br />
-        <input type="text" class="inputClear" id = "addLname" placeholder="Last Name" /><br />
-        <input type="text" class="inputClear" id = "addEmail" placeholder="Email" /><br />
+        <input type="text" class="inputClear" id = "add-first-name" placeholder="First Name" /><br />
+        <input type="text" class="inputClear" id = "add-last-name" placeholder="Last Name" /><br />
+        <input type="text" class="inputClear" id = "add-email" placeholder="Email" /><br />
         <span id="emailExist"></span>
-        <input type="text" class="inputClear" id = "addPhone" placeholder="Phone Number" /><br />
+        <input type="text" class="inputClear" id = "add-phone" placeholder="Phone Number" /><br />
         <span id="phoneExist"></span>
-        <button type="button" class="buttons" id = "addButton" onclick="addButton()">Add</button>
-        <span id="addResult" class="results"></span>
+        <button type="button" class="buttons" id = "add-button" onclick="addButton()">Add</button>
+        <span id="add-result" class="results"></span>
     </div>
     
     <div id="Search" class="tabcontent">
         <h3>Search contacts</h3>
-        <input type="text" class="inputClear" id = "searchText" placeholder="Search Here" /><br />
+        <input type="text" class="inputClear" id = "search-text" placeholder="Search Here" /><br />
         
         <span>Search by:</span></br>
-        <input type="checkbox" class="smallbox" name="searchFname" id="searchFname" checked>
+        <input type="checkbox" class="smallbox" name="search-first-name" id="search-first-name" checked>
         <label class="check">First Name</label>
         
-        <input type="checkbox" class="smallbox" name="searchLname" id="searchLname" checked>
+        <input type="checkbox" class="smallbox" name="search-last-name" id="search-last-name" checked>
         <label class="check"> Last Name</label>
         
-        <input type="checkbox" class="smallbox" name="searchEmail" id="searchEmail" checked>
+        <input type="checkbox" class="smallbox" name="search-email" id="search-email" checked>
         <label class="check"> Email</label>
         
-        <input type="checkbox" class="smallbox" name="searchPhone" id="searchPhone" checked>
+        <input type="checkbox" class="smallbox" name="search-phone" id="search-phone" checked>
         <label class="check"> Phone Number</label></br></br>
         
-        <button type="button" class="buttons" id = "searchButton" onclick="searchButton()">Search</button>
-        <p id="searchList" class="lists"></p>
+        <button type="button" class="buttons" id = "search-button" onclick="searchButton()">Search</button>
+        <p id="search-list" class="lists"></p>
     </div>
 
     <div id="Update" class="tabcontent">
         <h3>Update contacts</h3>
         <!-- search -->
-        <input type="text" class="inputClear" id = "upSearchText" placeholder="Search Here" /><br />
+        <input type="text" class="inputClear" id = "update-search-text" placeholder="Search Here" /><br />
         
         <span>Search by:</span></br>
-        <input type="checkbox" class="smallbox" name="updateFname" id="updateFname" checked>
+        <input type="checkbox" class="smallbox" name="update-first-name" id="update-first-name" checked>
         <label class="check">First Name</label>
         
-        <input type="checkbox" class="smallbox" name="updateLname" id="updateLname" checked>
+        <input type="checkbox" class="smallbox" name="update-last-name" id="update-last-name" checked>
         <label class="check"> Last Name</label>
         
-        <input type="checkbox" class="smallbox" name="updateEmail" id="updateEmail" checked>
+        <input type="checkbox" class="smallbox" name="update-email" id="update-email" checked>
         <label class="check"> Email</label>
         
-        <input type="checkbox" class="smallbox" name="updatePhone" id="updatePhone" checked>
+        <input type="checkbox" class="smallbox" name="update-phone" id="update-phone" checked>
         <label class="check"> Phone Number</label></br></br>
 
-        <button type="button" class="buttons" id = "upSearchButton" onclick="upSearchButton()">Search</button>
-        <p id="updateList" class="lists"></p>
+        <button type="button" class="buttons" id = "update-search-button" onclick="upSearchButton()">Search</button>
+        <p id="update-list" class="lists"></p>
         <!-- select contact to update -->
         <!-- update screen -->
-        <div class="tabcontainer" id="updateBox" hidden>
-            <input type="text" class="inputClear" id = "upFname" placeholder="First Name" /><br />
-            <input type="text" class="inputClear" id = "upLname" placeholder="Last Name" /><br />
-            <input type="text" class="inputClear" id = "upEmail" placeholder="Email" /><br />
-            <input type="text" class="inputClear" id = "upPhone" placeholder="Phone Number" /><br />
-            <button type="button" class="buttons" id = "updateButton" onclick="updateButton()">Update</button>
-            <span id="updateResult" class="results"></span>
+        <div class="tabcontainer" id="update-box" hidden>
+            <input type="text" class="inputClear" id = "update-First-name" placeholder="First Name" /><br />
+            <input type="text" class="inputClear" id = "update-Last-name" placeholder="Last Name" /><br />
+            <input type="text" class="inputClear" id = "update-Email" placeholder="Email" /><br />
+            <input type="text" class="inputClear" id = "update-Phone" placeholder="Phone Number" /><br />
+            <button type="button" class="buttons" id = "update-Button" onclick="updateButton()">Update</button>
+            <span id="update-result" class="results"></span>
         </div>
         <!-- update contact -->
     </div>
@@ -87,24 +87,24 @@
     <div id="Delete" class="tabcontent">
         <h3>Delete a contact</h3>
         <!-- search -->
-        <input type="text" class="inputClear" id = "delSearchText" placeholder="Search Here" /><br />
+        <input type="text" class="inputClear" id = "delete-search-text" placeholder="Search Here" /><br />
         
         <span>Search by:</span></br>
-        <input type="checkbox" class="smallbox" name="deleteFname" id="deleteFname" checked>
+        <input type="checkbox" class="smallbox" name="delete-first-name" id="delete-first-name" checked>
         <label class="check">First Name</label>
         
-        <input type="checkbox" class="smallbox" name="deleteLname" id="deleteLname" checked>
+        <input type="checkbox" class="smallbox" name="delete-last-name" id="delete-last-name" checked>
         <label class="check"> Last Name</label>
         
-        <input type="checkbox" class="smallbox" name="deleteEmail" id="deleteEmail" checked>
+        <input type="checkbox" class="smallbox" name="delete-email" id="delete-email" checked>
         <label class="check"> Email</label>
         
-        <input type="checkbox" class="smallbox" name="deletePhone" id="deletePhone" checked>
+        <input type="checkbox" class="smallbox" name="delete-phone" id="delete-phone" checked>
         <label class="check"> Phone Number</label></br></br>
         
-        <button type="button" class="buttons" id = "delSearchButton" onclick="delSearchButton()">Search</button>
-        <p id="deleteList" class="lists"></p>
-        <span id="deleteResult" class="results"></span>
+        <button type="button" class="buttons" id = "delete-search-button" onclick="delSearchButton()">Search</button>
+        <p id="delete-list" class="lists"></p>
+        <span id="delete-result" class="results"></span>
         <!-- select contact to delete -->
         <!-- delete contact -->
     </div>
