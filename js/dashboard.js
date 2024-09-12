@@ -48,83 +48,122 @@ function addButton(){
   //check if email and phone number already exists
 }
 function searchButton(){
-  //let srch = document.getElementById("searchText").value;
-  let searchList = "";
+  let srch = document.getElementById("searchText").value;
+  resetLists();
   
   //get all contacts that matches srch
-  
-  searchList += createList()
-  searchList += createList();
-
   //if no contacts matches srch, display no match message
 
-  document.getElementById("searchList").innerHTML=searchList;
+  createList();
+  createList();
 }
-function createList(){
-  let list = "<div class='tabcontainer'>";
+function createList(input){
+  let list = document.getElementById("searchList");
   
-  //add name, email, and phone from contacts to list
-  list+="first last</br>";
-  list+="email@email.com</br>";
-  list+="Phone Number</br>";
+  var doc = document.createElement("div");
+  doc.setAttribute("class","tabcontainer");
   
-  return list + "</div>";
+  //check checkboxes
+  if(document.getElementById("searchFname").checked)
+    doc.append("fname\n");
+  if(document.getElementById("searchLname").checked)
+    doc.append("lname\n");
+  if(document.getElementById("searchEmail").checked)
+    doc.append("email\n");
+  if(document.getElementById("searchPhone").checked)
+    doc.append("phone\n");
+  
+  list.appendChild(doc);
 }
 function upSearchButton(){
-  //let srch = document.getElementById("upSearchText").value;
-  let updateList = "";
+  let srch = document.getElementById("upSearchText").value;
+  resetLists();
   
   //if no contacts matches srch, display no match message
-
-  updateList += createUpdateList();
-  updateList += createUpdateList();
-  
-  document.getElementById("updateList").innerHTML=updateList; 
+  for(let i = 0; i<3; i++){
+    createUpdateList(i);
+  }
 }
-function createUpdateList(){
-  let list = "<div class='tabcontainer'>";
+function createUpdateList(id){
+  let list = document.getElementById("updateList");
   
-  //get name, email, and phone from contacts and display in input box
-  list+=inputBox("name");
-  list+=inputBox("email");
-  list+=inputBox("phone");
-  list+="<button type='button' class='buttons' onclick='updateContactButton()'>Update</button></br>";
+  var doc = document.createElement("div");
+  doc.setAttribute("class","tabcontainer");
   
-  return list + "</div>";
+  //check checkboxes
+  if(document.getElementById("updateFname").checked)
+    doc.append("fname\n");
+  if(document.getElementById("updateLname").checked)
+    doc.append("lname\n");
+  if(document.getElementById("updateEmail").checked)
+    doc.append("email\n");
+  if(document.getElementById("updatePhone").checked)
+    doc.append("phone\n");
+  
+  doc.appendChild(createUpdateButton(id));
+  
+  list.appendChild(doc);
 }
-function inputBox(value){
-  let str = "<input type='text' class='inputClear' id = 'upSearchText' value='";
-  str += value;
-  return str + "'/></br>";
+function createUpdateButton(id){
+  var btn = document.createElement("button");
+  var btnId = "upBtn"+id;
+  
+  btn.setAttribute("id", btnId);
+  btn.setAttribute("type", "button");
+  btn.setAttribute("class", "buttons");
+  btn.setAttribute("onClick", "updateContactButton(this.id)");
+  
+  btn.append("Update");
+  return btn;
 }
 function delSearchButton(){
-  //let srch = document.getElementById("delSearchText").value;
-  let deleteList = "";
+  let srch = document.getElementById("delSearchText").value;
+  resetLists();
   
   //if no contacts matches srch, display no match message
-  
-  deleteList += createDeleteList();
-  deleteList += createDeleteList();
-  
-  document.getElementById("deleteList").innerHTML=deleteList;
+  for(let i = 0; i<2; i++){
+    createDeleteList(i);
+  }
 }
-function createDeleteList(){
-  let list = "<div class='tabcontainer'>";
+function createDeleteList(id){
+  let list = document.getElementById("deleteList");
   
-  list+="first last</br>";
-  list+="email@email.com</br>";
-  list+="Phone Number</br>";
-  list+=createDeleteButton();
+  var doc = document.createElement("div");
+  doc.setAttribute("class","tabcontainer");
   
-  return list + "</div>";
+  //check checkboxes
+  if(document.getElementById("deleteFname").checked)
+    doc.append("fname\n");
+  if(document.getElementById("deleteLname").checked)
+    doc.append("lname\n");
+  if(document.getElementById("deleteEmail").checked)
+    doc.append("email\n");
+  if(document.getElementById("deletePhone").checked)
+    doc.append("phone\n");
+  
+  doc.appendChild(createDeleteButton(id));
+  
+  list.appendChild(doc);
 }
-function createDeleteButton(){
-  let str = "<button type='button' class='buttons' onclick='deleteContactButton()'>Delete</button></br>";
-  return str;
+function createDeleteButton(id){
+  var btn = document.createElement("button");
+  var btnId = "delBtn"+id;
+
+  btn.setAttribute("id", btnId);
+  btn.setAttribute("type", "button");
+  btn.setAttribute("class", "buttons");
+  btn.setAttribute("onClick", "deleteContactButton(this.id)");
+  
+  btn.append("Delete");
+  return btn;
 }
-function deleteContactButton(){
-  document.getElementById("deleteResult").innerHTML="Delete Successful";
+function deleteContactButton(id){
+  document.getElementById("deleteResult").innerHTML=id;
 }
-function updateContactButton(){
-  document.getElementById("updateResult").innerHTML="Update Saved";
+function updateContactButton(id){
+  document.getElementById("updateList").hidden=true;
+  document.getElementById("updateBox").hidden=false;
+}
+function updateButton(){
+  document.getElementById("updateResult").innerHTML="update successful";
 }
