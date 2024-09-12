@@ -1,4 +1,9 @@
 <?php
+
+// Set headers for JSON response
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET");
+
 // Load environment variables
 require_once 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
