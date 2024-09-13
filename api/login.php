@@ -10,7 +10,7 @@ header("Access-Control-Allow-Methods: *");
 
 // Function to connect to the database
 function getConnection() {
-	$host = "localhost";
+	$host = "127.0.0.1";
     $db_name = "contact_manager_db"; // Replace with your database name
     $username = "TeamOne";       // Replace with your database username
     $password = "TeamOnePassword";           // Replace with your database password
