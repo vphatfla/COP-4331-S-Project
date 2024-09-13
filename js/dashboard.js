@@ -1,3 +1,5 @@
+const baseurl = 'https://www.contactmanagerteamone.one/api/';
+
 function openTab(evt, tab) {
   // Declare all variables
   var i, tabcontent, tablinks;
@@ -116,6 +118,25 @@ function createUpdateButton(id){
   btn.append("Update");
   return btn;
 }
+//update buttons in list
+function updateContactButton(id){
+  document.getElementById("update-list").hidden=true;
+  document.getElementById("update-box").hidden=false;
+  
+  //set values of update input boxes to values from database
+  document.getElementById("update-First-name").value="first";
+  document.getElementById("update-Last-name").value="last";
+  document.getElementById("update-Email").value="email";
+  document.getElementById("update-Phone").value="phone";
+}
+//update button in box
+function updateButton(){
+  document.getElementById("update-result").innerHTML="update successful";
+}
+function updateCancelButton(){
+  document.getElementById("update-list").hidden=false;
+  document.getElementById("update-box").hidden=true;
+}
 function delSearchButton(){
   let srch = document.getElementById("delete-search-text").value;
   resetLists();
@@ -130,7 +151,7 @@ function createDeleteList(id){
   
   var doc = document.createElement("div");
   doc.setAttribute("class","tabcontainer");
-  
+  doc.setAttribute("id", "delete-"+id);
   //check checkboxes
   if(document.getElementById("delete-first-name").checked)
     doc.append("fname\n");
@@ -158,12 +179,11 @@ function createDeleteButton(id){
   return btn;
 }
 function deleteContactButton(id){
-  document.getElementById("delete-result").innerHTML=id;
-}
-function updateContactButton(id){
-  document.getElementById("update-list").hidden=true;
-  document.getElementById("update-box").hidden=false;
-}
-function updateButton(){
-  document.getElementById("update-result").innerHTML="update successful";
+  let str = id;
+  str = str.replace("button-", "");  
+  //show confirm message
+  if (confirm("Are you sure you want to delete this contact")) {
+    document.getElementById(str).remove();
+  }
+  document.getElementById("delete-result").innerHTML=str;
 }
