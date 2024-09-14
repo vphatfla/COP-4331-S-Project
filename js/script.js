@@ -6,12 +6,13 @@ function signup() {
     const username = document.getElementById("signup-username").value;
     const password = document.getElementById("signup-password").value;
     const retypePassword = document.getElementById("retyped-signup-password").value;
+    const matchErrorElement = document.getElementById("signup-password-error");
 	if (password !== retypePassword) {
-		document.getElementById("signup-password-error").classList.remove("hidden");
-		return;
+        matchErrorElement.classList.remove("hidden");
+        return;
 	}
 	else {
-		document.getElementById("signup-password-error").style.display= 'none';
+		matchErrorElement.classList.add("hidden");
 	}
 	const payload = {
 		username: username,
@@ -36,7 +37,9 @@ function signup() {
     })
     .catch(error => {
         console.error('Error:', error);
-        document.getElementById("signup-error").classList.remove("hidden");
+        const errorElement = document.getElementById("signup-error");
+        errorElement.classList.remove("hidden");
+        errorElement.classList.add("error");
 		// alert('An error occurred while logging in. Please try again.');
     });
     
