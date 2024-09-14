@@ -69,7 +69,7 @@ function login() {
         if (data.token) {
             // If login is successful, store the JWT in localStorage
             localStorage.setItem('jwt', data.token);
-
+	    localStorage.setItem('uid', data.uid);
             // Redirect to the dashboard
             window.location.href = 'dashboard.html';
         } else {
