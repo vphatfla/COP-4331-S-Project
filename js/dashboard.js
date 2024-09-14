@@ -1,6 +1,7 @@
 const baseurl = 'https://www.contactmanagerteamone.one/api/';
 let deleteid =0;
 
+
 function openTab(evt, tab) {
   // Declare all variables
   var i, tabcontent, tablinks;
@@ -124,7 +125,7 @@ function updateContactButton(id){
   document.getElementById("update-box").hidden=false;
   
   //set values of update input boxes to values from database
-  document.getElementById("update-First-name").value=id;
+  document.getElementById("update-First-name").value="first";
   document.getElementById("update-Last-name").value="last";
   document.getElementById("update-Email").value="email";
   document.getElementById("update-Phone").value="phone";

@@ -12,10 +12,12 @@
     <h1>Contact Manager, COP 4331 Team One!</h1>
     <div id="signup" class="auth-form">
         <h2>Sign Up</h2>
-        
-        <input type="text" id="signup-username" placeholder="Username" required>
-        <input type="password" id="signup-password" placeholder="Password" required>
-        <input type="password" id="retyped-signup-password" placeholder="Retype Password" required>
+        <label for="signup-username">Username<span class="required-asterisk">*</span></label>
+        <input type="text" id="signup-username" placeholder="" required>
+        <label for="signup-password">Password<span class="required-asterisk">*</span></label>
+        <input type="password" id="signup-password" placeholder="" required>
+        <label for="retyped-signup-password">Retype Password<span class="required-asterisk">*</span></label>
+        <input type="password" id="retyped-signup-password" placeholder="" required>
 	<p class="hidden" id="signup-password-error">Password Do Not Match, Try Again</p>
 	<p class="hidden" id="signup-error">Sign Up Error, Please Try Again</p>
         <button onclick="signup()">Sign Up</button>
@@ -26,8 +28,10 @@
         <h2>Login</h2>
 	<div class="message hidden" id="signup-message">Sign up successful! You can now log in.</div>
         <div class="message hidden" id="login-message">Logged in successfully!</div>
-        <input type="text" id="login-username" placeholder="Username" required>
-        <input type="password" id="login-password" placeholder="Password" required>
+        <label for="login-username">Username<span class="required-asterisk">*</span></label>
+        <input type="text" id="login-username" placeholder="" required>
+        <label for="login-password">Password<span class="required-asterisk">*</span></label>
+        <input type="password" id="login-password" placeholder="" required>
 	<p class="hidden" id="login-error">Invalid Username and Password</p>
 	<button onclick="login()">Login</button>
         <a href="#" onclick="toggleTwoVisibility('signup', 'login')">Not a user? Sign Up!</a>

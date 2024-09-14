@@ -23,6 +23,10 @@ input {
     border-radius: 5px;
 }
 
+input:required {
+    border-left: 5px solid red;
+}
+
 button {
     width: 100%;
     padding: 10px;
@@ -40,6 +44,42 @@ button:hover {
 .message {
     color: green;
     margin-bottom: 10px;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.required-asterisk {
+    color: red;
+    margin-left: 5px;
+    cursor: pointer;
+    position: relative;
+    vertical-align: sub;
+}
+
+.required-asterisk::after {
+    content: "Required Field";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+.required-asterisk:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .hidden {
