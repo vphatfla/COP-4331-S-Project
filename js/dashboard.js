@@ -1,4 +1,5 @@
 const baseurl = 'https://www.contactmanagerteamone.one/api/';
+let deleteid =0;
 
 function openTab(evt, tab) {
   // Declare all variables
@@ -53,13 +54,11 @@ function searchButton(){
   let srch = document.getElementById("search-text").value;
   resetLists();
   
-  //get all contacts that matches srch
-  //if no contacts matches srch, display no match message
-
-  createList();
-  createList();
+  for(let i = 0; i<2; i++){
+    createList(i);
+  }
 }
-function createList(input){
+function createList(){
   let list = document.getElementById("search-list");
   
   var doc = document.createElement("div");
@@ -81,10 +80,11 @@ function upSearchButton(){
   let srch = document.getElementById("update-search-text").value;
   resetLists();
   
-  //if no contacts matches srch, display no match message
-  for(let i = 0; i<3; i++){
+  for(let i = 0; i<5; i++){
     createUpdateList(i);
   }
+  document.getElementById("update-list").hidden=false;
+  document.getElementById("update-box").hidden=true;
 }
 function createUpdateList(id){
   let list = document.getElementById("update-list");
@@ -124,7 +124,7 @@ function updateContactButton(id){
   document.getElementById("update-box").hidden=false;
   
   //set values of update input boxes to values from database
-  document.getElementById("update-First-name").value="first";
+  document.getElementById("update-First-name").value=id;
   document.getElementById("update-Last-name").value="last";
   document.getElementById("update-Email").value="email";
   document.getElementById("update-Phone").value="phone";
@@ -132,6 +132,8 @@ function updateContactButton(id){
 //update button in box
 function updateButton(){
   document.getElementById("update-result").innerHTML="update successful";
+  document.getElementById("update-list").hidden=false;
+  document.getElementById("update-box").hidden=true;
 }
 function updateCancelButton(){
   document.getElementById("update-list").hidden=false;
@@ -141,14 +143,13 @@ function delSearchButton(){
   let srch = document.getElementById("delete-search-text").value;
   resetLists();
   
-  //if no contacts matches srch, display no match message
   for(let i = 0; i<2; i++){
     createDeleteList(i);
   }
 }
 function createDeleteList(id){
   let list = document.getElementById("delete-list");
-  
+
   var doc = document.createElement("div");
   doc.setAttribute("class","tabcontainer");
   doc.setAttribute("id", "delete-"+id);
@@ -178,12 +179,19 @@ function createDeleteButton(id){
   btn.append("Delete");
   return btn;
 }
+//delete button in list
 function deleteContactButton(id){
-  let str = id;
-  str = str.replace("button-", "");  
+  deleteid=id.replace("button-","");
   //show confirm message
-  if (confirm("Are you sure you want to delete this contact")) {
-    document.getElementById(str).remove();
-  }
-  document.getElementById("delete-result").innerHTML=str;
+  document.getElementById("confirm-delete-box").style.display='block';
+}
+//cancel button in delete confirm box
+function cancelDeleteButton(){
+  document.getElementById('confirm-delete-box').style.display='none'
+}
+//delete button in delete confirm box
+function confirmDeleteButton(){
+  document.getElementById(deleteid).remove();
+  document.getElementById('confirm-delete-box').style.display='none'
+  document.getElementById("delete-result").innerHTML=deleteid;
 }
