@@ -25,19 +25,30 @@ function getConnection()
     }
 }
 
-function checkIfContactExists($uid, $phoneNumber, $email)
+function checkIfPhoneExists($uid, $phoneNumber)
 {
     $conn = getConnection();
 
-    // check both phone number and email for a given uid
-    $query = "SELECT * FROM Contact WHERE uid = :uid AND (phoneNumber = :phoneNumber OR email = :email) LIMIT 1";
+    $query = "SELECT * FROM Contact WHERE uid = :uid AND phoneNumber = :phoneNumber LIMIT 1";
     $stmt = $conn->prepare($query);
-
     $stmt->bindParam(':uid', $uid);
     $stmt->bindParam(':phoneNumber', $phoneNumber);
-    $stmt->bindParam(':email', $email);
-
     $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function checkIfEmailExists($uid, $email)
+{
+    $conn = getConnection();
+
+    // Query to check if email exists for the given uid
+    $query = "SELECT * FROM Contact WHERE uid = :uid AND email = :email LIMIT 1";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':uid', $uid);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -56,16 +67,15 @@ if (
     $lastName = $input['lastName'];
     $email = $input['email'];
 
-    $existingContact = checkIfContactExists($uid, $phoneNumber, $email);
-
-    if ($existingContact) {
-        if ($existingContact['phoneNumber'] === $phoneNumber) {
-            http_response_code(409);
-            echo json_encode(["message" => "Duplicate contact: The phone number already exists for this user."]);
-        } elseif ($existingContact['email'] === $email) {
-            http_response_code(409);
-            echo json_encode(["message" => "Duplicate contact: The email address already exists for this user."]);
-        }
+    // Check if phone number exists for this user
+    if (checkIfPhoneExists($uid, $phoneNumber)) {
+        http_response_code(409);
+        echo json_encode(["message" => "Duplicate contact: The phone number already exists for this user."]);
+    }
+    // Check if email exists for this user
+    elseif (checkIfEmailExists($uid, $email)) {
+        http_response_code(409);
+        echo json_encode(["message" => "Duplicate contact: The email address already exists for this user."]);
     } else {
         $conn = getConnection();
 
@@ -73,7 +83,6 @@ if (
         $query = "INSERT INTO Contact (uid, phoneNumber, firstName, lastName, email)
                   VALUES (:uid, :phoneNumber, :firstName, :lastName, :email)";
         $stmt = $conn->prepare($query);
-
         $stmt->bindParam(':uid', $uid);
         $stmt->bindParam(':phoneNumber', $phoneNumber);
         $stmt->bindParam(':firstName', $firstName);
