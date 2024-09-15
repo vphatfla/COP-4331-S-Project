@@ -50,3 +50,39 @@ function fetchContactsByUid() {
                 tableBody.appendChild(row);
             });
        	}
+
+
+async function addContactFunction() {
+    const firstName = document.getElementById("add-first-name").value;
+    const lastName = document.getElementById("add-last-name").value;
+    const email = document.getElementById("add-email").value;
+    const phoneNumber = document.getElementById("add-phone").value;
+
+    // Construct the payload
+    const payload = {
+      uid: localStorage.getItem("uid"),
+      phoneNumber: phoneNumber,
+      firstName: firstName,
+      lastName: lastName,
+      email: email
+    };
+
+    try {
+      const response = await fetch('https://www.contactmanagerteamone.one/api/addContact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        document.getElementById("add-result").textContent = "Contact added successfully!";
+      } else {
+        document.getElementById("add-result").textContent = `Error: ${result.message || 'Failed to add contact'}`;
+      }
+    } catch (error) {
+      document.getElementById("add-result").textContent = `Error: ${error.message}`;
+    }
+  }
