@@ -15,8 +15,6 @@
         <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
         <button class="tablinks" onclick="openTab(event, 'Add')">Add</button>
         <button class="tablinks" onclick="openTab(event, 'Search')">Search</button>
-        <button class="tablinks" onclick="openTab(event, 'Update')">Update</button>
-        <button class="tablinks" onclick="openTab(event, 'Delete')">Delete</button>
     </div>
 
     <!-- Home Tab content -->
@@ -26,8 +24,6 @@
     	<table id="contactTable">
         	<thead>
            	 	<tr>
-                	<th>ID</th>
-                	<th>UID</th>
                 	<th>Phone Number</th>
                 	<th>First Name</th>
                 	<th>Last Name</th>
@@ -75,86 +71,21 @@
         <p id="search-list" class="lists"></p>
     </div>
 
-    <!-- Update Tab content -->
-    <div id="Update" class="tabcontent">
-        <h3>Update contacts</h3>
-        <input type="text" class="inputClear" id="update-search-text" placeholder="Search Here" /><br />
-        
-        <span>Search by:</span></br>
-        <input type="checkbox" class="smallbox" name="update-first-name" id="update-first-name" checked>
-        <label class="check">First Name</label>
-        
-        <input type="checkbox" class="smallbox" name="update-last-name" id="update-last-name" checked>
-        <label class="check"> Last Name</label>
-        
-        <input type="checkbox" class="smallbox" name="update-email" id="update-email" checked>
-        <label class="check"> Email</label>
-        
-        <input type="checkbox" class="smallbox" name="update-phone" id="update-phone" checked>
-        <label class="check"> Phone Number</label></br></br>
+    
+</div>
 
-        <button type="button" class="buttons" id="update-search-button" onclick="upSearchButton()">Search</button>
-        <p id="update-list" class="lists"></p>
-        <!-- select contact to update -->
-        <!-- update screen -->
-        <div id="update-box" hidden>
-            <input type="text" class="inputClear" id = "update-First-name" placeholder="First Name" /><br />
-            <input type="text" class="inputClear" id = "update-Last-name" placeholder="Last Name" /><br />
-            <input type="text" class="inputClear" id = "update-Email" placeholder="Email" /><br />
-            <input type="text" class="inputClear" id = "update-Phone" placeholder="Phone Number" /><br />
-            <button type="button" class="buttons" id = "update-cancel" onclick="updateCancelButton()">Cancel</button>
-            <button type="button" class="buttons" id = "update-Button" onclick="updateButton()">Update</button>
-
-
-        <div class="tabcontainer" id="update-box" hidden>
-            <input type="text" class="inputClear" id="update-First-name" placeholder="First Name" /><br />
-            <input type="text" class="inputClear" id="update-Last-name" placeholder="Last Name" /><br />
-            <input type="text" class="inputClear" id="update-Email" placeholder="Email" /><br />
-            <input type="text" class="inputClear" id="update-Phone" placeholder="Phone Number" /><br />
-            <button type="button" class="buttons" id="update-cancel" onclick="updateCancelButton()">Cancel</button>
-            <button type="button" class="buttons" id="update-Button" onclick="updateButton()">Update</button>
-            <span id="update-result" class="results"></span>
-        </div>
-    </div>
-
-    <!-- Delete Tab content -->
-    <div id="Delete" class="tabcontent">
-        <h3>Delete a contact</h3>
-        <input type="text" class="inputClear" id="delete-search-text" placeholder="Search Here" /><br />
-        
-        <span>Search by:</span></br>
-        <input type="checkbox" class="smallbox" name="delete-first-name" id="delete-first-name" checked>
-        <label class="check">First Name</label>
-        
-        <input type="checkbox" class="smallbox" name="delete-last-name" id="delete-last-name" checked>
-        <label class="check"> Last Name</label>
-        
-        <input type="checkbox" class="smallbox" name="delete-email" id="delete-email" checked>
-        <label class="check"> Email</label>
-        
-        <input type="checkbox" class="smallbox" name="delete-phone" id="delete-phone" checked>
-        <label class="check"> Phone Number</label></br></br>
-        
-        <button type="button" class="buttons" id="delete-search-button" onclick="delSearchButton()">Search</button>
-        <p id="delete-list" class="lists"></p>
-        <span id="delete-result" class="results"></span>
-
-        <!-- select contact to delete -->
-        <!-- delete contact -->
-        <div id="confirm-delete-box" class="modal">
-            <div class="modal-content">
-                <div class="modalcontainer">
-                    <h1>Delete Contact</h1>
-                    <p>Are you sure you want to delete this contact?</p>
-                    <div class="clearfix">
-                    <button type="button" onclick="cancelDeleteButton()" class="cancelbtn">Cancel</button>
-                    <button type="button" onclick="confirmDeleteButton()" class="deletebtn">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+<!-- Hidden Popup Box -->
+<div id="confirm-delete-box" class="modal">
+	<div class="modal-content">
+		<div class="modalcontainer">
+			<h1>Delete Contact</h1>
+            <p>Are you sure you want to delete this contact?</p>
+			<div class="clearfix">
+                <button type="button" onclick="closeDeletePopup()" class="cancelbtn">Cancel</button>
+                <button type="button" onclick="confirmDelete()" class="deletebtn">Delete</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script>
