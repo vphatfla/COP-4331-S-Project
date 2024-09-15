@@ -30,27 +30,26 @@ function fetchContactsByUid() {
         });
 }
 // Function to display contacts
-	async function displayContacts(res) {
-		const contactList = await res.json();
+async function displayContacts(res) {
+    const contactList = await res.json();
 		const tableBody = document.getElementById("contactTable").getElementsByTagName("tbody")[0];
 		tableBody.innerHTML = ""; // Clear previous content
 	//	console.log(contactList);
-	    contactList.forEach(contact => {
-                // Create a new row
-                const row = document.createElement("tr");
+	   contactList.forEach(contact => {
+      // Create a new row
+      const row = document.createElement("tr");
 
-                // Create cells for each contact field
-                Object.values(contact).forEach(value => {
-                    const cell = document.createElement("td");
-                    cell.textContent = value;
-                    row.appendChild(cell);
-                });
+      // Create cells for each contact field
+      Object.values(contact).forEach(value => {
+          const cell = document.createElement("td");
+          cell.textContent = value;
+          row.appendChild(cell);
+      });
 
-                // Append the row to the table body
-                tableBody.appendChild(row);
-            });
-       	}
-
+      // Append the row to the table body
+      tableBody.appendChild(row);
+      });
+}
 
 async function addContactFunction() {
     const firstName = document.getElementById("add-first-name").value;
