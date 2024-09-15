@@ -196,3 +196,6 @@ function confirmDeleteButton(){
   document.getElementById('confirm-delete-box').style.display='none'
   document.getElementById("delete-result").innerHTML=deleteid;
 }
+function logoutButton(){
+  window.location.href = 'index.html';
+}
