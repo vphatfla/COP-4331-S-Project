@@ -20,41 +20,27 @@
 }
 
 .modal {
-  display: none; / Hidden by default /
-  position: fixed; / Stay in place /
-  z-index: 1; / Sit on top /
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; / Full width /
-  height: 100%; / Full height /
-  overflow: auto; / Enable scroll if needed /
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
   padding-top: 50px;
 }
 
 .modal-content {
   background-color: #fefefe;
-  margin: 20% auto 15% auto; / 5% from the top, 15% from the bottom and centered /
+  margin: 20% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 40%; / Could be more or less, depending on screen size /
-}
+  width: 40%; /* Could be more or less, depending on screen size */
+} 
 
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
-}
- 
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
-
-.close:hover, .close:focus {
-  color: #f44336;
-  cursor: pointer;
 }
 
 .clearfix::after {
@@ -62,6 +48,7 @@ hr {
   clear: both;
   display: table;
 }
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -102,6 +89,7 @@ body {
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+  width: 33.33%;
 }
   
 /* Change background color of buttons on hover */
@@ -120,6 +108,7 @@ body {
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+  height: 80%;
 }
 
 .inputClear{
@@ -155,76 +144,12 @@ input.smallbox{
   width: 50%;
   padding: 20px;
 }
-/* Float cancel and delete buttons and add an equal width */
-.cancelbtn, .deletebtn {
-  float: left;
-  width: 50%;
-  height: 40px;
-  border: none;
-}
-
-/* Add a color to the cancel button */
-.cancelbtn {
-  background-color: #ccc;
-  color: black;
-}
-
-/* Add a color to the delete button */
-.deletebtn {
-  background-color: #f44336;
-}
-
-/* Add padding and center-align text to the container */
-.modalcontainer {
-  padding: 16px;
-  text-align: center;
-}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  padding-top: 50px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 20% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 40%; /* Could be more or less, depending on screen size */
-}
-
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
- 
-/* The Modal Close Button (x) */
-.close {
+#logout-button{
+  right: 20%;
   position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
+  font-size: 20px;
+  margin: 5px;
 }
-
-.close:hover, .close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
+#title{
+  text-align: center;
 }
