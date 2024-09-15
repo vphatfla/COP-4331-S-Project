@@ -70,16 +70,6 @@ if (
     $email = $input['email'];              
 
     
-    if (checkIfPhoneExists($uid, $phoneNumber, $contactId)) {
-        http_response_code(409); 
-        echo json_encode(["message" => "Duplicate contact: The phone number already exists for another contact of this user."]);
-    }
-    
-    elseif (checkIfEmailExists($uid, $email, $contactId)) {
-        http_response_code(409); 
-        echo json_encode(["message" => "Duplicate contact: The email address already exists for another contact of this user."]);
-    } else {
-        
         $conn = getConnection();
 
         $query = "UPDATE Contact SET phoneNumber = :phoneNumber, firstName = :firstName, lastName = :lastName, email = :email 
@@ -105,7 +95,7 @@ if (
             http_response_code(500);
             echo json_encode(["message" => "Failed to update contact."]);
         }
-    }
+
 
 } else {
     // Missing required fields
