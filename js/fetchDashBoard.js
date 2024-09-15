@@ -32,23 +32,25 @@ function fetchContactsByUid() {
 // Function to display contacts
 async function displayContacts(res) {
     const contactList = await res.json();
-		const tableBody = document.getElementById("contactTable").getElementsByTagName("tbody")[0];
-		tableBody.innerHTML = ""; // Clear previous content
-	//	console.log(contactList);
-	   contactList.forEach(contact => {
-      // Create a new row
-      const row = document.createElement("tr");
+	const tableBody = document.getElementById("contactTable").getElementsByTagName("tbody")[0];
+	tableBody.innerHTML = ""; // Clear previous content
+	
+	contactList.forEach(contact => {
+        const row = document.createElement("tr");
 
-      // Create cells for each contact field
-      Object.values(contact).forEach(value => {
-          const cell = document.createElement("td");
-          cell.textContent = value;
-          row.appendChild(cell);
-      });
+        row.innerHTML = `
+            <td>${contact.phoneNumber}</td>
+            <td>${contact.firstName}</td>
+            <td>${contact.lastName}</td>
+            <td>${contact.email}</td>
+            <td>
+                <button onclick="updateContact(${contact.id})">Update</button>
+                <button onclick="showDeletePopup(${contact.id})">Delete</button>
+            </td>
+        `;
 
-      // Append the row to the table body
-      tableBody.appendChild(row);
-      });
+        tableBody.appendChild(row);
+    });
 }
 
 async function addContactFunction() {
@@ -84,4 +86,44 @@ async function addContactFunction() {
     } catch (error) {
       document.getElementById("add-result").textContent = `Error: ${error.message}`;
     }
-  }
+}
+
+let contactIdToDelete = null;
+// Function to display the confirmation popup
+function showDeletePopup(contactId) {
+    contactIdToDelete = contactId;
+    document.getElementById('confirm-delete-box').style.display = 'flex';  // Show the popup
+}
+
+// Function to close the popup without deleting
+function closeDeletePopup() {
+    document.getElementById('confirm-delete-box').style.display = 'none';  // Hide the popup
+}
+
+// Function to handle the actual deletion after confirmation
+function confirmDelete() {
+    if (contactIdToDelete !== null) {
+        // Send the DELETE request to the API
+        fetch(`https://www.contactmanagerteamone.one/api/deleteContactById.php?contactId=${contactIdToDelete}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+		    { 
+			contactId: contactIdToDelete,
+		    	uid: localStorage.getItem('uid')
+			}
+	    )  // Send the contact ID for deletion
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();  // Reload the page on success
+            } else {
+                alert(`Error deleting contact: ${data.message}`);
+            	window.location.reload();
+	    }
+        })
+        .catch(error => alert(`Error: ${error.message}`));
+    }
+    closeDeletePopup();  // Close the popup
+}
