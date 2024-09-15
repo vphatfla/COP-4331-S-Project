@@ -80,6 +80,16 @@
 
         <button type="button" class="buttons" id="update-search-button" onclick="upSearchButton()">Search</button>
         <p id="update-list" class="lists"></p>
+        <!-- select contact to update -->
+        <!-- update screen -->
+        <div id="update-box" hidden>
+            <input type="text" class="inputClear" id = "update-First-name" placeholder="First Name" /><br />
+            <input type="text" class="inputClear" id = "update-Last-name" placeholder="Last Name" /><br />
+            <input type="text" class="inputClear" id = "update-Email" placeholder="Email" /><br />
+            <input type="text" class="inputClear" id = "update-Phone" placeholder="Phone Number" /><br />
+            <button type="button" class="buttons" id = "update-cancel" onclick="updateCancelButton()">Cancel</button>
+            <button type="button" class="buttons" id = "update-Button" onclick="updateButton()">Update</button>
+
 
         <div class="tabcontainer" id="update-box" hidden>
             <input type="text" class="inputClear" id="update-First-name" placeholder="First Name" /><br />
@@ -113,6 +123,22 @@
         <button type="button" class="buttons" id="delete-search-button" onclick="delSearchButton()">Search</button>
         <p id="delete-list" class="lists"></p>
         <span id="delete-result" class="results"></span>
+
+        <!-- select contact to delete -->
+        <!-- delete contact -->
+        <div id="confirm-delete-box" class="modal">
+            <div class="modal-content">
+                <div class="modalcontainer">
+                    <h1>Delete Contact</h1>
+                    <p>Are you sure you want to delete this contact?</p>
+                    <div class="clearfix">
+                    <button type="button" onclick="cancelDeleteButton()" class="cancelbtn">Cancel</button>
+                    <button type="button" onclick="confirmDeleteButton()" class="deletebtn">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
