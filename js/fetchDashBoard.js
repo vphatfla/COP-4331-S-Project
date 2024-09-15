@@ -44,7 +44,7 @@ async function displayContacts(res) {
             <td>${contact.lastName}</td>
             <td>${contact.email}</td>
             <td>
-                <button onclick="updateContact(${contact.id})">Update</button>
+                <button onclick="showUpdatePopup(${contact.id}, '${contact.phoneNumber}', '${contact.firstName}', '${contact.lastName}', '${contact.email}')">Update</button>
                 <button onclick="showDeletePopup(${contact.id})">Delete</button>
             </td>
         `;
@@ -126,4 +126,63 @@ function confirmDelete() {
         .catch(error => alert(`Error: ${error.message}`));
     }
     closeDeletePopup();  // Close the popup
+}
+
+
+
+// update contact
+let contactToUpdate = null; // Variable to store the contact ID
+
+// Function to display the update popup and prepopulate it with contact details
+function showUpdatePopup(contactId, phoneNumber, firstName, lastName, email) {
+    contactToUpdate = contactId;
+    
+    // Prepopulate the input fields with the existing values
+    document.getElementById('update-phone').value = phoneNumber;
+    document.getElementById('update-first-name').value = firstName;
+    document.getElementById('update-last-name').value = lastName;
+    document.getElementById('update-email').value = email;
+    
+    // Show the popup
+    document.getElementById('updateContactPopup').style.display = 'flex';
+}
+
+// Function to close the popup without updating
+function closeUpdatePopup() {
+    document.getElementById('updateContactPopup').style.display = 'none';  // Hide the popup
+}
+
+// Function to send the updated contact information to the API
+function confirmUpdate() {
+    if (contactToUpdate !== null) {
+        const updatedPhoneNumber = document.getElementById('update-phone').value;
+        const updatedFirstName = document.getElementById('update-first-name').value;
+        const updatedLastName = document.getElementById('update-last-name').value;
+        const updatedEmail = document.getElementById('update-email').value;
+
+        // Send the update request to the API
+        fetch(`https://www.contactmanagerteamone.one/api/updateContact.php`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+		uid: localStorage.getItem('uid'),
+		id: contactToUpdate,
+                phoneNumber: updatedPhoneNumber,
+                firstName: updatedFirstName,
+                lastName: updatedLastName,
+                email: updatedEmail
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();  // Reload the page on success
+            } else {
+                alert(`Update Status: ${data.message}`);
+		window.location.reload();
+            }
+        })
+        .catch(error => alert(`Error: ${error.message}`));
+    }
+    closeUpdatePopup();  // Close the popup
 }

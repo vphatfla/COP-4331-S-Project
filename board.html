@@ -88,18 +88,35 @@
 	</div>
 </div>
 
+<!-- Hidden Popup Box for Updating Contact -->
+<div id="updateContactPopup" class="popup-box">
+    <div class="popup-content">
+        <h3>Update Contact</h3>
+        <!-- Phone Number -->
+        <label for="update-phone">Phone Number:</label><br />
+        <input type="text" id="update-phone" placeholder="Phone Number" /><br /><br />
+        
+        <!-- First Name -->
+        <label for="update-first-name">First Name:</label><br />
+        <input type="text" id="update-first-name" placeholder="First Name" /><br /><br />
+        
+        <!-- Last Name -->
+        <label for="update-last-name">Last Name:</label><br />
+        <input type="text" id="update-last-name" placeholder="Last Name" /><br /><br />
+        
+        <!-- Email -->
+        <label for="update-email">Email:</label><br />
+        <input type="email" id="update-email" placeholder="Email" /><br /><br />
+
+	<button onclick="confirmUpdate()" class="buttons">Confirm</button>
+        <button onclick="closeUpdatePopup()" class="buttons">Cancel</button>
+    </div>
+</div>
+
+
 <script>
-   
-
-    // Trigger fetching contacts when the 'Home' tab is opened
-    //document.querySelector('button[onclick="openTab(event, \'Home\')"]').addEventListener('click', loadContacts);
-
-    // Additional logic for other tab actions (like add, search, update, delete) will go here
-	// Load the "Home" tab automatically when the page is loaded
     window.onload = function() {
 	openTab(event, "Home");
-	//        document.getElementById("Home").click(); // Open the Home tab
-        // loadContacts(); // Load contacts immediatel
     	fetchContactsByUid();
     };
 </script>
