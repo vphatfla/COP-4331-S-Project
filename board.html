@@ -15,9 +15,29 @@
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
         <button class="tablinks" onclick="openTab(event, 'Add')">Add</button>
-        <button class="tablinks" onclick="openTab(event, 'Search')">Search</button>
     </div>
+	
+	<!-- Search Button to show the search section -->
+    <button onclick="showSearchSection()">Search</button>
 
+    <!-- Hidden Search Section -->
+    <div id="searchSection">
+        <h3>Search Contacts</h3>
+        <label for="search-first-name">First Name:</label>
+        <input type="text" id="search-first-name" name="firstName"><br><br>
+
+        <label for="search-last-name">Last Name:</label>
+        <input type="text" id="search-last-name" name="lastName"><br><br>
+
+        <label for="search-phone-number">Phone Number:</label>
+        <input type="text" id="search-phone-number" name="phoneNumber"><br><br>
+
+        <label for="search-email">Email:</label>
+        <input type="text" id="search-email" name="email"><br><br>
+
+        <button onclick="searchContacts()">Search</button>
+        <button onclick="resetSearchSection()">Reset</button>
+    </div>	
     <!-- Home Tab content -->
     <div id="Home" class="tabcontent">
         <h3>All Contacts</h3>
@@ -34,14 +54,6 @@
         	</thead>
         	<tbody>
             	<!-- Contacts will be dynamically inserted here -->
-                 <td>123-456-7890</td>
-                 <td>Dom</td>
-                 <td>Zha</td>
-                 <td>email@email</td>
-                 <td class="table-buttons">
-                    <button onclick="showUpdatePopup(1, 'phoneNumber', 'firstName', 'lastName', 'email')">Update</button>
-                    <button onclick="showDeletePopup(1)">Delete</button>
-                </td>
         	</tbody>
     	</table>
 	</div>
@@ -59,8 +71,9 @@
         <span id="add-result" class="results"></span>
     </div>
     
-    <!-- Search Tab content -->
-    <div id="Search" class="tabcontent">
+     <!-- Search Tab content -->
+    <!--
+     <div id="Search" class="tabcontent">
         <h3>Search contacts</h3>
         <input type="text" class="inputClear" id="search-text" placeholder="Search Here" /><br />
         
@@ -79,7 +92,7 @@
         <button type="button" id="search-button" onclick="searchButton()">Search</button>
         <p id="search-list" class="lists"></p>
     </div>
-
+-->
     
 </div>
 

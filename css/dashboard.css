@@ -1,3 +1,7 @@
+#searchSection {
+	display: none;
+	margin-top: 20px;
+}
 /* Styles for popup box */
 .popup-box {
     display: none;
