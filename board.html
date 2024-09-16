@@ -29,10 +29,19 @@
                 	<th>First Name</th>
                 	<th>Last Name</th>
                 	<th>Email</th>
+                    <th></th>
             	</tr>
         	</thead>
         	<tbody>
             	<!-- Contacts will be dynamically inserted here -->
+                 <td>123-456-7890</td>
+                 <td>Dom</td>
+                 <td>Zha</td>
+                 <td>email@email</td>
+                 <td class="table-buttons">
+                    <button onclick="showUpdatePopup(1, 'phoneNumber', 'firstName', 'lastName', 'email')">Update</button>
+                    <button onclick="showDeletePopup(1)">Delete</button>
+                </td>
         	</tbody>
     	</table>
 	</div>
@@ -46,7 +55,7 @@
         <span id="emailExist"></span>
         <input type="text" class="inputClear" id="add-phone" placeholder="Phone Number" /><br />
         <span id="phoneExist"></span>
-        <button type="button" class="buttons" id="add-button" onclick="addContactFunction()">Add</button>
+        <button type="button" id="add-button" onclick="addContactFunction()">Add</button></br></br>
         <span id="add-result" class="results"></span>
     </div>
     
@@ -55,20 +64,19 @@
         <h3>Search contacts</h3>
         <input type="text" class="inputClear" id="search-text" placeholder="Search Here" /><br />
         
-        <span>Search by:</span></br>
-        <input type="checkbox" class="smallbox" name="search-first-name" id="search-first-name" checked>
-        <label class="check">First Name</label>
-        
-        <input type="checkbox" class="smallbox" name="search-last-name" id="search-last-name" checked>
-        <label class="check"> Last Name</label>
-        
-        <input type="checkbox" class="smallbox" name="search-email" id="search-email" checked>
-        <label class="check"> Email</label>
-        
-        <input type="checkbox" class="smallbox" name="search-phone" id="search-phone" checked>
-        <label class="check"> Phone Number</label></br></br>
-        
-        <button type="button" class="buttons" id="search-button" onclick="searchButton()">Search</button>
+        <div class="search-check">
+            <span>Search by:</span></br>
+            <input type="checkbox" class="smallbox" name="search-first-name" id="search-first-name" checked>
+            <label class="check">First Name</label>
+            <input type="checkbox" class="smallbox" name="search-last-name" id="search-last-name" checked>
+            <label class="check"> Last Name</label>
+            <input type="checkbox" class="smallbox" name="search-email" id="search-email" checked>
+            <label class="check"> Email</label>
+            <input type="checkbox" class="smallbox" name="search-phone" id="search-phone" checked>
+            <label class="check"> Phone Number</label></br></br>
+        </div>
+
+        <button type="button" id="search-button" onclick="searchButton()">Search</button>
         <p id="search-list" class="lists"></p>
     </div>
 
@@ -109,8 +117,8 @@
         <label for="update-email">Email:</label><br />
         <input type="email" id="update-email" placeholder="Email" /><br /><br />
 
-	<button onclick="confirmUpdate()" class="buttons">Confirm</button>
         <button onclick="closeUpdatePopup()" class="buttons">Cancel</button>
+	    <button onclick="confirmUpdate()" class="buttons">Confirm</button>
     </div>
 </div>
 

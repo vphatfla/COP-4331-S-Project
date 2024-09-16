@@ -23,9 +23,14 @@
 }
 
 .buttons {
-    padding: 10px 15px;
-    margin: 10px;
-    cursor: pointer;
+  padding: 10px 15px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: black;
+  width: 100px;
+  border-radius: 25px;
+  font-size: 15px;
 }
 
 /* Delete POP UP */
@@ -60,6 +65,7 @@
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   padding-top: 50px;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
 }
 
 .modal-content {
@@ -97,10 +103,9 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .tabcontainer {
-  width: 40%;
-  padding: 20px;
+  width: 95%;
+  padding: 10px;
   background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   white-space: pre-wrap;
   border: 1px solid black;
 }
@@ -118,9 +123,10 @@ body {
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 10px 16px;
   transition: 0.3s;
   width: 33.33%;
+  font-size: 18px;
 }
   
 /* Change background color of buttons on hover */
@@ -144,29 +150,25 @@ body {
 
 .inputClear{
   font-size: 15px;
-  margin-bottom: 1%;
-  width: 300px;
-}
-.buttons {
-  cursor: pointer;
-  background-color: #ffffff;
-  font-size: 15px;
-  color: black;
-  width: 100px;
-  border-radius: 25px;
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 button:hover {
   background-color: #b5b5b5;
 }
+.search-check{
+  margin-left: 5px;
+}
 .check{
-  font-size: 12px;
+  font-size: 15px;
 }
 input.smallbox{
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 .lists{
-  height: 50%;
+  height: 60%;
   overflow: auto;
 }
 #update-box{
@@ -183,4 +185,32 @@ input.smallbox{
 }
 #title{
   text-align: center;
+}
+#add-button, #search-button{
+  cursor: pointer;
+  background-color: #ffffff;
+  color: black;
+  width: 100px;
+  border-radius: 25px;
+  font-size: 20px;
+}
+#Add{
+  text-align: center;
+}
+table {
+  border-collapse: collapse;
+  width: 880px;
+}
+td, th{
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  font-size: 18px;
+  padding: 10px 0px;
+  width: 200px;
+}
+table button{
+  font-size: 18px;
+}
+.table-buttons{
+  width: 160px;
 }
