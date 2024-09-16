@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div>
+<div class="container">
     <button type="button" id="logout-button" onclick="logoutButton()">Logout</button>
     <h1 id="title">Contact Manager</h1>
 
@@ -17,30 +17,32 @@
         <button class="tablinks" onclick="openTab(event, 'Add')">Add</button>
     </div>
 	
-	<!-- Search Button to show the search section -->
-    <button onclick="showSearchSection()">Search</button>
-
-    <!-- Hidden Search Section -->
-    <div id="searchSection">
-        <h3>Search Contacts</h3>
-        <label for="search-first-name">First Name:</label>
-        <input type="text" id="search-first-name" name="firstName"><br><br>
-
-        <label for="search-last-name">Last Name:</label>
-        <input type="text" id="search-last-name" name="lastName"><br><br>
-
-        <label for="search-phone-number">Phone Number:</label>
-        <input type="text" id="search-phone-number" name="phoneNumber"><br><br>
-
-        <label for="search-email">Email:</label>
-        <input type="text" id="search-email" name="email"><br><br>
-
-        <button onclick="searchContacts()">Search</button>
-        <button onclick="resetSearchSection()">Reset</button>
-    </div>	
     <!-- Home Tab content -->
     <div id="Home" class="tabcontent">
-        <h3>All Contacts</h3>
+        <h2>All Contacts</h2>
+        <!-- Search Button to show the search section -->
+        <button id="search-button" onclick="showSearchSection()">Search</button>
+
+        <!-- Hidden Search Section -->
+        <div id="searchSection">
+            <h3>Search Contacts</h3>
+            <div class="search-box">
+                <label for="search-first-name">First Name:</label>
+                <input type="text" class="search-input" id="search-first-name" name="firstName"><br><br>
+
+                <label for="search-last-name">Last Name:</label>
+                <input type="text" class="search-input" id="search-last-name" name="lastName"><br><br>
+
+                <label for="search-phone-number">Phone Number:</label>
+                <input type="text" class="search-input" id="search-phone-number" name="phoneNumber"><br><br>
+
+                <label for="search-email">Email:</label>
+                <input type="text" class="search-input" id="search-email" name="email"><br><br>
+            </div>
+
+            <button onclick="searchContacts()">Search</button>
+            <button onclick="resetSearchSection()">Reset</button>
+        </div>	
    		 <!-- Table to display contacts -->
     	<table id="contactTable">
         	<thead>
@@ -60,7 +62,7 @@
 
     <!-- Add Tab content -->
     <div id="Add" class="tabcontent">
-        <h3>Add a new contact</h3>
+        <h2>Add a new contact</h2>
         <input type="text" class="inputClear" id="add-first-name" placeholder="First Name" /><br />
         <input type="text" class="inputClear" id="add-last-name" placeholder="Last Name" /><br />
         <input type="text" class="inputClear" id="add-email" placeholder="Email" /><br />

@@ -87,6 +87,9 @@ async function addContactFunction() {
     } catch (error) {
       document.getElementById("add-result").textContent = `Error: ${error.message}`;
     }
+
+    //remove values in input boxes after pressing the button
+    clearInput();
 }
 
 let contactIdToDelete = null;
@@ -191,11 +194,17 @@ function confirmUpdate() {
 // Show the search section
 function showSearchSection() {
     document.getElementById('searchSection').style.display = 'block';
+    document.getElementById('search-button').style.display = 'none';
 }
 
 // Hide the search section
 function resetSearchSection() {
     document.getElementById('searchSection').style.display = 'none';
+    document.getElementById('search-button').style.display = 'block';
+    const arr = document.getElementsByClassName("search-input");
+    for(let i = 0; i < arr.length; i++){
+        arr[i].value='';
+    }
 }
 
 // Search contacts based on input fields and display in the table
