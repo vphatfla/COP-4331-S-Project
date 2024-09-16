@@ -39,10 +39,10 @@ async function displayContacts(res) {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${contact.phoneNumber}</td>
             <td>${contact.firstName}</td>
             <td>${contact.lastName}</td>
-            <td>${contact.email}</td>
+            <td>${contact.phoneNumber}</td>
+	    <td>${contact.email}</td>
             <td>
                 <button onclick="showUpdatePopup(${contact.id}, '${contact.phoneNumber}', '${contact.firstName}', '${contact.lastName}', '${contact.email}')">Update</button>
                 <button onclick="showDeletePopup(${contact.id})">Delete</button>
@@ -174,7 +174,15 @@ function confirmUpdate() {
                 email: updatedEmail
             })
         })
-        .then(response => displayContacts(response))
+	    .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();  // Reload the page on success
+            } else {
+                alert(`Update Status: ${data.message}`);
+		fetchContactsByUid();
+            }
+        })
         .catch(error => alert(`Error: ${error.message}`));
     }
     closeUpdatePopup();  // Close the popup
