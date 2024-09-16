@@ -92,7 +92,7 @@ let contactIdToDelete = null;
 // Function to display the confirmation popup
 function showDeletePopup(contactId) {
     contactIdToDelete = contactId;
-    document.getElementById('confirm-delete-box').style.display = 'flex';  // Show the popup
+    document.getElementById('confirm-delete-box').style.display = 'block';  // Show the popup
 }
 
 // Function to close the popup without deleting
