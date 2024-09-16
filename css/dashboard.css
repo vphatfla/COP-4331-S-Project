@@ -134,6 +134,10 @@ body {
   background-color: #ddd;
 }
   
+#add-button:hover, #search-button:hover{
+  background-color: #b5b5b5;
+}
+
 /* Create an active/current tablink class */
 .tab button.active {
   background-color: #ccc;
@@ -188,10 +192,10 @@ input.smallbox{
 }
 #add-button, #search-button{
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: #f1f1f1;
   color: black;
   width: 100px;
-  border-radius: 25px;
+  border-radius: 5px;
   font-size: 20px;
 }
 #Add{
