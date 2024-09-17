@@ -39,10 +39,10 @@ async function displayContacts(res) {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${contact.phoneNumber}</td>
             <td>${contact.firstName}</td>
             <td>${contact.lastName}</td>
-            <td>${contact.email}</td>
+            <td>${contact.phoneNumber}</td>
+	    <td>${contact.email}</td>
             <td>
                 <button onclick="showUpdatePopup(${contact.id}, '${contact.phoneNumber}', '${contact.firstName}', '${contact.lastName}', '${contact.email}')">Update</button>
                 <button onclick="showDeletePopup(${contact.id})">Delete</button>
@@ -80,6 +80,7 @@ async function addContactFunction() {
       const result = await response.json();
       if (response.ok) {
         document.getElementById("add-result").textContent = "Contact added successfully!";
+      	fetchContactsByUid();
       } else {
         document.getElementById("add-result").textContent = `Error: ${result.message || 'Failed to add contact'}`;
       }
@@ -173,16 +174,61 @@ function confirmUpdate() {
                 email: updatedEmail
             })
         })
-        .then(response => response.json())
+	    .then(response => response.json())
         .then(data => {
             if (data.success) {
                 window.location.reload();  // Reload the page on success
             } else {
                 alert(`Update Status: ${data.message}`);
-		window.location.reload();
+		fetchContactsByUid();
             }
         })
         .catch(error => alert(`Error: ${error.message}`));
     }
     closeUpdatePopup();  // Close the popup
 }
+
+// Show the search section
+function showSearchSection() {
+    document.getElementById('searchSection').style.display = 'block';
+}
+
+// Hide the search section
+function resetSearchSection() {
+    document.getElementById('searchSection').style.display = 'none';
+}
+
+// Search contacts based on input fields and display in the table
+function searchContacts() {
+    const uid = localStorage.getItem('uid'); // Assuming a static UID, adjust as needed.
+    const firstName = document.getElementById('search-first-name').value.trim();
+    const lastName = document.getElementById('search-last-name').value.trim();
+    const phoneNumber = document.getElementById('search-phone-number').value.trim();
+    const email = document.getElementById('search-email').value.trim();
+    const contactTableBody = document.querySelector('#contactTable tbody');
+
+    // Construct the JSON payload with non-empty fields
+    const payload = {
+        uid: uid
+    };
+    if (firstName) payload.firstName = firstName;
+    if (lastName) payload.lastName = lastName;
+    if (phoneNumber) payload.phoneNumber = phoneNumber;
+    if (email) payload.email = email;
+
+    // Make the POST request to the API
+    fetch('https://www.contactmanagerteamone.one/api/searchFuzzyContact.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    })
+    .then(response => displayContacts(response))
+    .catch(error => {
+	    const row = document.createElement('tr');
+        row.innerHTML = `<td colspan="4">No Contacts Found!</td>`;
+        contactTableBody.appendChild(row);
+    });
+}
+

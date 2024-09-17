@@ -71,7 +71,7 @@ function login() {
             localStorage.setItem('jwt', data.token);
 	    localStorage.setItem('uid', data.uid);
             // Redirect to the dashboard
-            window.location.href = 'dashboard.html';
+            window.location.href = 'board.html';
         } else {
             // Show the error message if login fails
             // document.getElementById("login-error").textContent = "Invalid login credentials";
