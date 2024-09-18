@@ -47,3 +47,23 @@ function resetResults(){
 function logoutButton(){
   window.location.href = 'index.html';
 }
+function createContactList(){
+  const tableBody = document.getElementById("contactTable").getElementsByTagName("tbody")[0];
+	
+	for(let i=0; i<5; i++){
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Phone Number</td>
+	    <td>Email@email.com</td>
+      <td class='table-buttons'>
+        <button onclick="showUpdatePopup(1, '123', 'Alice', 'Bob', 'email.com')">Update</button>
+        <button onclick="showDeletePopup(1)">Delete</button>
+      </td>
+    `;
+
+    tableBody.appendChild(row);
+  }
+}

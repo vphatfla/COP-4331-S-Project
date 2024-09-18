@@ -88,6 +88,29 @@ async function addContactFunction() {
       document.getElementById("add-result").textContent = `Error: ${error.message}`;
     }
 
+    //messing field message
+    let str="Required:\n ";
+    let missing = false;
+    if(firstName==""){
+        str+="First Name\n ";
+        missing=true;
+    }
+    if(lastName==""){
+        str+="Last Name\n ";
+        missing=true;
+    }
+    if(phoneNumber==""){
+        str+="Phone Number\n ";
+        missing=true;
+    }
+    if(email==""){
+        str+="Email\n ";
+        missing=true;
+    }
+    if(missing){
+        document.getElementById("add-result").textContent = str;
+    }
+
     //remove values in input boxes after pressing the button
     clearInput();
 }
@@ -193,14 +216,18 @@ function confirmUpdate() {
 
 // Show the search section
 function showSearchSection() {
-    document.getElementById('searchSection').style.display = 'block';
+    document.getElementById('searchSection').style.display = 'flex';
+    document.getElementById('search-title').style.display = 'block';
     document.getElementById('search-button').style.display = 'none';
+    document.getElementById('tableSection').style.height = '75%';
 }
 
 // Hide the search section
 function resetSearchSection() {
     document.getElementById('searchSection').style.display = 'none';
+    document.getElementById('search-title').style.display = 'none';
     document.getElementById('search-button').style.display = 'block';
+    document.getElementById('tableSection').style.height = '80%';
     const arr = document.getElementsByClassName("search-input");
     for(let i = 0; i < arr.length; i++){
         arr[i].value='';

@@ -7,8 +7,9 @@
 </head>
 <body>
 
+<button type="button" id="logout-button" onclick="logoutButton()">Logout</button>
+
 <div class="container">
-    <button type="button" id="logout-button" onclick="logoutButton()">Logout</button>
     <h1 id="title">Contact Manager</h1>
 
     <!-- Tab links -->
@@ -19,45 +20,38 @@
 	
     <!-- Home Tab content -->
     <div id="Home" class="tabcontent">
-        <h2>All Contacts</h2>
+        <h2>Contacts List</h2>
         <!-- Search Button to show the search section -->
         <button id="search-button" onclick="showSearchSection()">Search</button>
 
         <!-- Hidden Search Section -->
+        <h3 id="search-title">Search by:</h3>
         <div id="searchSection">
-            <h3>Search Contacts</h3>
-            <div class="search-box">
-                <label for="search-first-name">First Name:</label>
-                <input type="text" class="search-input" id="search-first-name" name="firstName"><br><br>
-
-                <label for="search-last-name">Last Name:</label>
-                <input type="text" class="search-input" id="search-last-name" name="lastName"><br><br>
-
-                <label for="search-phone-number">Phone Number:</label>
-                <input type="text" class="search-input" id="search-phone-number" name="phoneNumber"><br><br>
-
-                <label for="search-email">Email:</label>
-                <input type="text" class="search-input" id="search-email" name="email"><br><br>
-            </div>
-
+            <input type="text" class="search-input" id="search-first-name" name="firstName" placeholder="First Name"><br><br>
+            <input type="text" class="search-input" id="search-last-name" name="lastName" placeholder="Last Name"><br><br>
+            <input type="text" class="search-input" id="search-phone-number" name="phoneNumber" placeholder="Phone Number"><br><br>
+            <input type="text" class="search-input" id="search-email" name="email" placeholder="Email"><br><br>
+    
             <button onclick="searchContacts()">Search</button>
             <button onclick="resetSearchSection()">Reset</button>
         </div>	
    		 <!-- Table to display contacts -->
-    	<table id="contactTable">
-        	<thead>
-           	 	<tr>
-					<th>First Name</th>
-                	<th>Last Name</th>
-                	<th>Phone Number</th>
-					<th>Email</th>
-                    <th></th>
-            	</tr>
-        	</thead>
-        	<tbody>
-            	<!-- Contacts will be dynamically inserted here -->
-        	</tbody>
-    	</table>
+    	<div id="tableSection">
+            <table id="contactTable">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Contacts will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
 	</div>
 
     <!-- Add Tab content -->
@@ -65,36 +59,13 @@
         <h2>Add a new contact</h2>
         <input type="text" class="inputClear" id="add-first-name" placeholder="First Name" /><br />
         <input type="text" class="inputClear" id="add-last-name" placeholder="Last Name" /><br />
-        <input type="text" class="inputClear" id="add-email" placeholder="Email" /><br />
-        <span id="emailExist"></span>
         <input type="text" class="inputClear" id="add-phone" placeholder="Phone Number" /><br />
         <span id="phoneExist"></span>
+        <input type="text" class="inputClear" id="add-email" placeholder="Email" /><br />
+        <span id="emailExist"></span>
         <button type="button" id="add-button" onclick="addContactFunction()">Add</button></br></br>
         <span id="add-result" class="results"></span>
     </div>
-    
-     <!-- Search Tab content -->
-    <!--
-     <div id="Search" class="tabcontent">
-        <h3>Search contacts</h3>
-        <input type="text" class="inputClear" id="search-text" placeholder="Search Here" /><br />
-        
-        <div class="search-check">
-            <span>Search by:</span></br>
-            <input type="checkbox" class="smallbox" name="search-first-name" id="search-first-name" checked>
-            <label class="check">First Name</label>
-            <input type="checkbox" class="smallbox" name="search-last-name" id="search-last-name" checked>
-            <label class="check"> Last Name</label>
-            <input type="checkbox" class="smallbox" name="search-email" id="search-email" checked>
-            <label class="check"> Email</label>
-            <input type="checkbox" class="smallbox" name="search-phone" id="search-phone" checked>
-            <label class="check"> Phone Number</label></br></br>
-        </div>
-
-        <button type="button" id="search-button" onclick="searchButton()">Search</button>
-        <p id="search-list" class="lists"></p>
-    </div>
--->
     
 </div>
 
@@ -105,8 +76,8 @@
 			<h1>Delete Contact</h1>
             <p>Are you sure you want to delete this contact?</p>
 			<div class="clearfix">
-                <button type="button" onclick="closeDeletePopup()" class="cancelbtn">Cancel</button>
-                <button type="button" onclick="confirmDelete()" class="deletebtn">Delete</button>
+                <button type="button" onclick="closeDeletePopup()" class="buttons">Cancel</button>
+                <button type="button" onclick="confirmDelete()" class="buttons deleteBtn">Delete</button>
 			</div>
 		</div>
 	</div>
@@ -115,10 +86,7 @@
 <!-- Hidden Popup Box for Updating Contact -->
 <div id="updateContactPopup" class="popup-box">
     <div class="popup-content">
-        <h3>Update Contact</h3>
-        <!-- Phone Number -->
-        <label for="update-phone">Phone Number:</label><br />
-        <input type="text" id="update-phone" placeholder="Phone Number" /><br /><br />
+        <h1>Update Contact</h1>
         
         <!-- First Name -->
         <label for="update-first-name">First Name:</label><br />
@@ -128,6 +96,10 @@
         <label for="update-last-name">Last Name:</label><br />
         <input type="text" id="update-last-name" placeholder="Last Name" /><br /><br />
         
+        <!-- Phone Number -->
+        <label for="update-phone">Phone Number:</label><br />
+        <input type="text" id="update-phone" placeholder="Phone Number" /><br /><br />
+
         <!-- Email -->
         <label for="update-email">Email:</label><br />
         <input type="email" id="update-email" placeholder="Email" /><br /><br />
@@ -142,6 +114,7 @@
     window.onload = function() {
 	openTab(event, "Home");
     	fetchContactsByUid();
+        createContactList();
     };
 </script>
 
