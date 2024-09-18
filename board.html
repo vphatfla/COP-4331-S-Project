@@ -6,19 +6,29 @@
     <link href="css/dashboard.css" rel="stylesheet">
 </head>
 <body>
-
+	<header>
+		<div class="top-navigation-wrap">
+			<h2>Contact Manager</h2>
+			<button type="button" onclick="logoutButton()">Logout</button>
+		</div>
+	</header>
 <div>
-    <button type="button" id="logout-button" onclick="logoutButton()">Logout</button>
-    <h1 id="title">Contact Manager</h1>
-
-    <!-- Tab links -->
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
-        <button class="tablinks" onclick="openTab(event, 'Add')">Add</button>
-    </div>
-	
 	<!-- Search Button to show the search section -->
-    <button onclick="showSearchSection()">Search</button>
+	<div class="options">
+		<button onclick="showSearchSection()">Search</button>
+		 <!-- Add Tab content -->
+    	<div id="Add" class="addInput">
+			<h3>Add a new contact</h3>
+			<input type="text" class="inputClear" id="add-first-name" placeholder="First Name" /><br />
+			<input type="text" class="inputClear" id="add-last-name" placeholder="Last Name" /><br />
+			<input type="text" class="inputClear" id="add-email" placeholder="Email" /><br />
+			<span id="emailExist"></span>
+			<input type="text" class="inputClear" id="add-phone" placeholder="Phone Number" /><br />
+			<span id="phoneExist"></span>
+			<button type="button" id="add-button" onclick="addContactFunction()">Add</button></br></br>
+			<span id="add-result" class="results"></span>
+    	</div>
+	</div>
 
     <!-- Hidden Search Section -->
     <div id="searchSection">
@@ -39,7 +49,7 @@
         <button onclick="resetSearchSection()">Reset</button>
     </div>	
     <!-- Home Tab content -->
-    <div id="Home" class="tabcontent">
+    <div id="Home"  class="tabcontent">
         <h3>All Contacts</h3>
    		 <!-- Table to display contacts -->
     	<table id="contactTable">
@@ -58,42 +68,7 @@
     	</table>
 	</div>
 
-    <!-- Add Tab content -->
-    <div id="Add" class="tabcontent">
-        <h3>Add a new contact</h3>
-        <input type="text" class="inputClear" id="add-first-name" placeholder="First Name" /><br />
-        <input type="text" class="inputClear" id="add-last-name" placeholder="Last Name" /><br />
-        <input type="text" class="inputClear" id="add-email" placeholder="Email" /><br />
-        <span id="emailExist"></span>
-        <input type="text" class="inputClear" id="add-phone" placeholder="Phone Number" /><br />
-        <span id="phoneExist"></span>
-        <button type="button" id="add-button" onclick="addContactFunction()">Add</button></br></br>
-        <span id="add-result" class="results"></span>
-    </div>
-    
-     <!-- Search Tab content -->
-    <!--
-     <div id="Search" class="tabcontent">
-        <h3>Search contacts</h3>
-        <input type="text" class="inputClear" id="search-text" placeholder="Search Here" /><br />
-        
-        <div class="search-check">
-            <span>Search by:</span></br>
-            <input type="checkbox" class="smallbox" name="search-first-name" id="search-first-name" checked>
-            <label class="check">First Name</label>
-            <input type="checkbox" class="smallbox" name="search-last-name" id="search-last-name" checked>
-            <label class="check"> Last Name</label>
-            <input type="checkbox" class="smallbox" name="search-email" id="search-email" checked>
-            <label class="check"> Email</label>
-            <input type="checkbox" class="smallbox" name="search-phone" id="search-phone" checked>
-            <label class="check"> Phone Number</label></br></br>
-        </div>
-
-        <button type="button" id="search-button" onclick="searchButton()">Search</button>
-        <p id="search-list" class="lists"></p>
-    </div>
--->
-    
+          
 </div>
 
 <!-- Hidden Popup Box -->
@@ -138,7 +113,6 @@
 
 <script>
     window.onload = function() {
-	openTab(event, "Home");
     	fetchContactsByUid();
     };
 </script>
