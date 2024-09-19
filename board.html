@@ -61,11 +61,15 @@
     <!-- Add Tab content -->
     <div id="Add" class="tabcontent">
         <h3>Add a new contact</h3>
-        <input type="text" class="inputClear" id="add-first-name" placeholder="First Name" /><br />
-        <input type="text" class="inputClear" id="add-last-name" placeholder="Last Name" /><br />
-        <input type="text" class="inputClear" id="add-email" placeholder="Email" /><br />
+        <label for="add-first-name">First Name<span class="required-asterisk">*</span></label>
+        <input type="text" class="inputClear" id="add-first-name" placeholder="" required/><br />
+        <label for="add-last-name">Last Name<span class="required-asterisk">*</span></label>
+        <input type="text" class="inputClear" id="add-last-name" placeholder="" required/><br />
+        <label for="add-email">Email<span class="required-asterisk">*</span></label>
+        <input type="text" class="inputClear" id="add-email" placeholder="" required/><br />
         <span id="emailExist"></span>
-        <input type="text" class="inputClear" id="add-phone" placeholder="Phone Number" /><br />
+        <label for="add-phone">Phone Number<span class="required-asterisk">*</span></label>
+        <input type="text" class="inputClear" id="add-phone" placeholder="" required/><br />
         <span id="phoneExist"></span>
         <button type="button" id="add-button" onclick="addContactFunction()">Add</button></br></br>
         <span id="add-result" class="results"></span>

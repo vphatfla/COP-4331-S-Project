@@ -138,6 +138,10 @@ body {
   background-color: #ddd;
 }
   
+#add-button:hover, #search-button:hover{
+  background-color: #b5b5b5;
+}
+
 /* Create an active/current tablink class */
 .tab button.active {
   background-color: #ccc;
@@ -175,6 +179,36 @@ input.smallbox{
   height: 60%;
   overflow: auto;
 }
+
+.required-asterisk {
+  color: red;
+  margin-left: 5px;
+  cursor: pointer;
+  position: relative;
+  vertical-align: sub;
+}
+
+.required-asterisk::after {
+  content: "Required Field";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+
+.required-asterisk:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
 #update-box{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border: 1px solid black;
@@ -192,10 +226,10 @@ input.smallbox{
 }
 #add-button, #search-button{
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: #f1f1f1;
   color: black;
   width: 100px;
-  border-radius: 25px;
+  border-radius: 5px;
   font-size: 20px;
 }
 #Add{
