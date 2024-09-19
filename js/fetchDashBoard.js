@@ -42,8 +42,8 @@ async function displayContacts(res) {
             <td>${contact.firstName}</td>
             <td>${contact.lastName}</td>
             <td>${contact.phoneNumber}</td>
-	    <td>${contact.email}</td>
-            <td>
+	        <td>${contact.email}</td>
+            <td class='table-buttons'>
                 <button onclick="showUpdatePopup(${contact.id}, '${contact.phoneNumber}', '${contact.firstName}', '${contact.lastName}', '${contact.email}')">Update</button>
                 <button onclick="showDeletePopup(${contact.id})">Delete</button>
             </td>
@@ -58,6 +58,30 @@ async function addContactFunction() {
     const lastName = document.getElementById("add-last-name").value;
     const email = document.getElementById("add-email").value;
     const phoneNumber = document.getElementById("add-phone").value;
+
+    //missing field message
+    let str="Required:\n ";
+    let missing = false;
+    if(firstName==""){
+        str+="First Name\n ";
+        missing=true;
+    }
+    if(lastName==""){
+        str+="Last Name\n ";
+        missing=true;
+    }
+    if(phoneNumber==""){
+        str+="Phone Number\n ";
+        missing=true;
+    }
+    if(email==""){
+        str+="Email\n ";
+        missing=true;
+    }
+    if(missing){
+        document.getElementById("add-result").textContent = str;
+        return;
+    }
 
     // Construct the payload
     const payload = {
@@ -86,29 +110,6 @@ async function addContactFunction() {
       }
     } catch (error) {
       document.getElementById("add-result").textContent = `Error: ${error.message}`;
-    }
-
-    //messing field message
-    let str="Required:\n ";
-    let missing = false;
-    if(firstName==""){
-        str+="First Name\n ";
-        missing=true;
-    }
-    if(lastName==""){
-        str+="Last Name\n ";
-        missing=true;
-    }
-    if(phoneNumber==""){
-        str+="Phone Number\n ";
-        missing=true;
-    }
-    if(email==""){
-        str+="Email\n ";
-        missing=true;
-    }
-    if(missing){
-        document.getElementById("add-result").textContent = str;
     }
 
     //remove values in input boxes after pressing the button
