@@ -47,6 +47,7 @@ function resetResults(){
 function logoutButton(){
   window.location.href = 'index.html';
 }
+//for styling
 function createContactList(){
   const tableBody = document.getElementById("contactTable").getElementsByTagName("tbody")[0];
 	
@@ -66,4 +67,8 @@ function createContactList(){
 
     tableBody.appendChild(row);
   }
+}
+function showAddSection(){
+  document.getElementById("addSection").hidden=false;
+  document.getElementById("add-button").hidden=true;
 }

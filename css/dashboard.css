@@ -165,6 +165,10 @@ hr {
   padding: 10px;
   margin-bottom: 20px;
 }
+.nameInput{
+  width: 24%;
+  margin-right: 1.5%;
+}
 .lists{
   height: 60%;
   overflow: auto;
@@ -175,7 +179,7 @@ hr {
   width: 50%;
   padding: 20px;
 }
-#add-button, #search-button{
+#add-button, #search-button, #add-section-button{
   cursor: pointer;
   background-color: #f1f1f1;
   color: black;
@@ -183,7 +187,7 @@ hr {
   border-radius: 5px;
   font-size: 20px;
 }
-#add-button:hover, #search-button:hover{
+#add-button:hover, #search-button:hover, #add-section-button:hover{
   background-color: #b5b5b5;
 }
 #Add{
@@ -204,13 +208,13 @@ td, th{
   text-align: left;
   font-size: 18px;
   padding: 10px 0px;
+  width: 20%;
 }
 table button{
   font-size: 18px;
   margin: 0px 10px;
 }
 .table-buttons{
-  width: 20%;
   text-align: center;
 }
 .results{
