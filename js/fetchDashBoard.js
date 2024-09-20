@@ -215,20 +215,22 @@ function confirmUpdate() {
     closeUpdatePopup();  // Close the popup
 }
 
-// Show the search section
+// Show and hide the search section
 function showSearchSection() {
-    document.getElementById('searchSection').style.display = 'flex';
-    document.getElementById('search-title').style.display = 'block';
-    document.getElementById('search-button').style.display = 'none';
-    document.getElementById('tableSection').style.height = '75%';
+    //show search section if hidden
+    if(document.getElementById('searchSection').hidden){
+        document.getElementById('searchSection').hidden=false;
+        document.getElementById('search-title').hidden=false;
+    }
+    //hide section if shown
+    else{
+        document.getElementById('searchSection').hidden=true;
+        document.getElementById('search-title').hidden=true;
+    }
 }
 
-// Hide the search section
+//reset search options the search section
 function resetSearchSection() {
-    document.getElementById('searchSection').style.display = 'none';
-    document.getElementById('search-title').style.display = 'none';
-    document.getElementById('search-button').style.display = 'block';
-    document.getElementById('tableSection').style.height = '80%';
     const arr = document.getElementsByClassName("search-input");
     for(let i = 0; i < arr.length; i++){
         arr[i].value='';

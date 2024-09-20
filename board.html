@@ -12,75 +12,50 @@
 <div class="container">
     <h1 id="title">Contact Manager</h1>
 
-    <!-- Tab links -->
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
-        <button class="tablinks" onclick="openTab(event, 'Add')">Add</button>
-    </div>
-	
-    <!-- Home Tab content -->
-    <div id="Home" class="tabcontent">
-        <h2>Contacts List</h2>
-        <!-- Add Button to show the add section -->
-        <button id="add-button" onclick="showAddSection()">Add</button>
+    <!-- Add Button to show the add section -->
+    <button id="add-button" onclick="showAddSection()">Add</button>
+    <!-- Search Button to show the search section -->
+    <button id="search-button" onclick="showSearchSection()">Search</button>
         
-        <div id="addSection">
-            <h3>Add a new contact</h3>
-            <input type="text" class="inputClear nameInput" id="add-first-name" placeholder="First Name" />
-            <input type="text" class="inputClear nameInput" id="add-last-name" placeholder="Last Name" />
+    <div id="addSection" hidden>
+        <h3>Add a new contact</h3>
+        <input type="text" class="inputClear nameInput" id="add-first-name" placeholder="First Name" />
+        <input type="text" class="inputClear nameInput" id="add-last-name" placeholder="Last Name" />
             
-            <input type="text" class="inputClear" id="add-phone" placeholder="Phone Number" />
-            <input type="text" class="inputClear" id="add-email" placeholder="Email" />
-            <button type="button" id="add-section-button" onclick="addContactFunction()">Add</button></br>
-            <span id="add-result" class="results"></span>
-        </div>
-        
-        <!-- Search Button to show the search section -->
-        <button id="search-button" onclick="showSearchSection()">Search</button>
-
-        <!-- Hidden Search Section -->
-        <h3 id="search-title">Search by:</h3>
-        <div id="searchSection">
-            <input type="text" class="search-input" id="search-first-name" name="firstName" placeholder="First Name"><br><br>
-            <input type="text" class="search-input" id="search-last-name" name="lastName" placeholder="Last Name"><br><br>
-            <input type="text" class="search-input" id="search-phone-number" name="phoneNumber" placeholder="Phone Number"><br><br>
-            <input type="text" class="search-input" id="search-email" name="email" placeholder="Email"><br><br>
-    
-            <button onclick="searchContacts()">Search</button>
-            <button onclick="resetSearchSection()">Reset</button>
-        </div>	
-   		 <!-- Table to display contacts -->
-    	<div id="tableSection">
-            <table id="contactTable">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Phone Number</th>
-                        <th>Email</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Contacts will be dynamically inserted here -->
-                </tbody>
-            </table>
-        </div>
-	</div>
-
-    <!-- Add Tab content -->
-    <div id="Add" class="tabcontent">
-        <h2>Add a new contact</h2>
-        <input type="text" class="inputClear" id="add-first-name" placeholder="First Name" /><br />
-        <input type="text" class="inputClear" id="add-last-name" placeholder="Last Name" /><br />
-        <input type="text" class="inputClear" id="add-phone" placeholder="Phone Number" /><br />
-        <span id="phoneExist"></span>
-        <input type="text" class="inputClear" id="add-email" placeholder="Email" /><br />
-        <span id="emailExist"></span>
-        <button type="button" id="add-section-button" onclick="addContactFunction()">Add</button></br></br>
+        <input type="text" class="inputClear" id="add-phone" placeholder="Phone Number" />
+        <input type="text" class="inputClear" id="add-email" placeholder="Email" />
+        <button type="button" id="add-section-button" onclick="addContactFunction()">Add</button></br>
         <span id="add-result" class="results"></span>
     </div>
+        
+    <!-- Hidden Search Section -->
+    <h3 id="search-title" hidden>Search by:</h3>
+    <div id="searchSection" hidden>
+        <input type="text" class="search-input" id="search-first-name" name="firstName" placeholder="First Name"><br><br>
+        <input type="text" class="search-input" id="search-last-name" name="lastName" placeholder="Last Name"><br><br>
+        <input type="text" class="search-input" id="search-phone-number" name="phoneNumber" placeholder="Phone Number"><br><br>
+        <input type="text" class="search-input" id="search-email" name="email" placeholder="Email"><br><br>
     
+        <button onclick="searchContacts()">Search</button>
+        <button onclick="resetSearchSection()">Reset</button>
+    </div>	
+   	 <!-- Table to display contacts -->
+    <div id="tableSection">
+        <table id="contactTable">
+            <thead>
+                 <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Contacts will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Hidden Popup Box -->
@@ -126,10 +101,9 @@
 
 <script>
     window.onload = function() {
-	openTab(event, "Home");
     	fetchContactsByUid();
-        //createContactList();
-    };
+        createContactList();
+    }
 </script>
 
 </body>
