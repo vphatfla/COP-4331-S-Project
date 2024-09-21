@@ -7,23 +7,31 @@
 </head>
 <body>
 
-<button type="button" id="logout-button" onclick="logoutButton()">Logout</button>
+    <header>
+		<div class="top-navigation-wrap">
+			<h2>Contact Manager</h2>
+			<button type="button" id="logout-button" onclick="logoutButton()">Logout</button>
+		</div>
+	</header>
 
 <div class="container">
-    <h1 id="title">Contact Manager</h1>
 
     <!-- Add Button to show the add section -->
     <button id="add-button" onclick="showAddSection()">Add</button>
     <!-- Search Button to show the search section -->
     <button id="search-button" onclick="showSearchSection()">Search</button>
         
+    <h3 id="add-title" hidden>Add a new contact</h3>
     <div id="addSection" hidden>
-        <h3>Add a new contact</h3>
-        <input type="text" class="inputClear nameInput" id="add-first-name" placeholder="First Name" />
-        <input type="text" class="inputClear nameInput" id="add-last-name" placeholder="Last Name" />
-            
-        <input type="text" class="inputClear" id="add-phone" placeholder="Phone Number" />
-        <input type="text" class="inputClear" id="add-email" placeholder="Email" />
+        <input type="text" class="add-input" id="add-first-name" placeholder="First Name"/>
+        <span class="required-asterisk">*</span>
+        <input type="text" class="add-input" id="add-last-name" placeholder="Last Name"/>
+        <span class="required-asterisk">*</span>
+        <input type="text" class="add-input" id="add-phone" placeholder="Phone Number"/>
+        <span class="required-asterisk">*</span>
+        <input type="text" class="add-input" id="add-email" placeholder="Email"/>
+        <span class="required-asterisk">*</span>
+
         <button type="button" id="add-section-button" onclick="addContactFunction()">Add</button></br>
         <span id="add-result" class="results"></span>
     </div>

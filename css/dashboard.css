@@ -1,37 +1,53 @@
+/* Header */
+.top-navigation-wrap {
+  align-items: center;
+  display: flex;
+  flex: 1 1;
+  height: var(--top-nav-height);
+  justify-content: center;
+}
 body {
   font-family: Arial, sans-serif;
-  display: flex;
-  align-items: flex-start;
+  display: block;
   justify-content: center;
-  height: 80%;
-  background-color: #ffffff;
-}
-#title{
-  text-align: center;
+  height: 99%;
+  background-color: #f4f4f4;
+  margin-bottom: 0px;
 }
 #logout-button{
   right: 0%;
   position: absolute;
   font-size: 30px;
-  margin: 5px;
+  margin-right: 10px;
+  width: auto;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+#logout-button:hover{
+  background-color: #0056b3;
 }
 .container {
   width: 80%;
-  height: 110%;
+  height: 80%;
   padding: 20px;
-  background-color: inherit;
+  background-color: white;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 25px;
 }
 
 [hidden]{
   display: none !important;
 }
 
-#searchSection {
+#searchSection, #addSection{
   display: flex;
   flex-direction: row;  
   height: 30px;
 }
-#searchSection button{
+#searchSection button, #add-section-button{
   font-size: 18px;
   margin: 0px 10px;
 }
@@ -39,13 +55,19 @@ body {
   width: 15%;
   margin-right: 20px;
 }
-#search-button{
-  margin-top: 20px;
+#search-button, #add-button{
   height: 30px;
 }
-#search-title{
+#search-title, #add-title{
   margin-bottom: 10px;
   width: 100%;
+}
+button{
+  cursor: pointer;
+  width: 80px;
+}
+button:hover{
+  background-color: #b5b5b5;
 }
 
 /* Styles for popup box */
@@ -77,7 +99,6 @@ body {
 .buttons {
   padding: 10px 15px;
   margin: 10px;
-  cursor: pointer;
   background-color: #ffffff;
   color: black;
   width: 100px;
@@ -87,6 +108,9 @@ body {
 .deletebtn {
   background-color: #f44336;
   color: white;
+}
+.deletebtn:hover{
+  background-color: #ae0000;
 }
 
 .modalcontainer {
@@ -122,56 +146,41 @@ hr {
   display: table;
 }
 
-.inputClear{
-  font-size: 15px;
-  width: 50%;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-.nameInput{
-  width: 24%;
-  margin-right: 1.5%;
-}
-.lists{
-  height: 60%;
-  overflow: auto;
-}
 #update-box{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border: 1px solid black;
   width: 50%;
   padding: 20px;
 }
-#add-button, #search-button, #add-section-button{
-  cursor: pointer;
+#add-button, #search-button{
   background-color: #f1f1f1;
   color: black;
   width: 100px;
   border-radius: 5px;
   font-size: 20px;
 }
-#add-button:hover, #search-button:hover, #add-section-button:hover{
+#add-button:hover, #search-button:hover{
   background-color: #b5b5b5;
 }
-#Add{
-  text-align: center;
+.add-input{
+  width: 15%;
+}
+.results{
+  color: red;
+  white-space: pre-wrap;
 }
 
-table {
-  border-collapse: collapse;
-  margin-top: 15px;
-  width: 100%;
+table { 
+  border-collapse: collapse; 
+  width: 100%; 
 }
-#tableSection{
-  height: 80%;
-  overflow: auto;
-}
-td, th{
+th, td { 
   border-bottom: 1px solid #dddddd;
-  text-align: left;
+  background: white; 
   font-size: 18px;
   padding: 10px 0px;
   width: 20%;
+  text-align: left;
 }
 table button{
   font-size: 18px;
@@ -180,7 +189,52 @@ table button{
 .table-buttons{
   text-align: center;
 }
-.results{
+table thead th {
+  position: sticky;
+  top: 0;
+}
+#tableSection {
+  overflow: auto;
+  height: 95%;
+  margin-top: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.required-asterisk {
   color: red;
-  white-space: pre-wrap;
+  margin-right: 14px;
+  cursor: pointer;
+  position: relative;
+  vertical-align: sub;
+}
+.required-asterisk::after {
+  content: "Required Field";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+.required-asterisk:hover::after {
+  opacity: 1;
+  visibility: visible;
 }

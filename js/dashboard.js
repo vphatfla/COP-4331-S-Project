@@ -1,15 +1,15 @@
 const baseurl = 'https://www.contactmanagerteamone.one/api/';
 
-function clearInput(){
-  const arr = document.getElementsByClassName("inputClear");
+function clearAddInput(){
+  const arr = document.getElementsByClassName("add-input");
   for(let i = 0; i < arr.length; i++){
     arr[i].value='';
   }
 }
-function resetLists(){
-  const arr = document.getElementsByClassName("lists");
+function clearSearchInput(){
+  const arr = document.getElementsByClassName("search-input");
   for(let i = 0; i < arr.length; i++){
-    arr[i].innerHTML='';
+    arr[i].value='';
   }
 }
 function resetResults(){
@@ -25,7 +25,7 @@ function logoutButton(){
 function createContactList(){
   const tableBody = document.getElementById("contactTable").getElementsByTagName("tbody")[0];
 	
-	for(let i=0; i<5; i++){
+	for(let i=0; i<15; i++){
     const row = document.createElement("tr");
 
     row.innerHTML = `
@@ -43,8 +43,23 @@ function createContactList(){
   }
 }
 function showAddSection(){
-  if(document.getElementById("addSection").hidden)
+  if(document.getElementById("addSection").hidden){
+    clearAddInput();
     document.getElementById("addSection").hidden=false;
-  else
-  document.getElementById("addSection").hidden=true;
+    document.getElementById("add-title").hidden=false;
+    
+    if(document.getElementById("searchSection").hidden)
+      document.getElementById("tableSection").style.height ="82.7%"
+    else
+      document.getElementById("tableSection").style.height ="70.4%"
+  }
+  else{
+    document.getElementById("addSection").hidden=true;
+    document.getElementById("add-title").hidden=true;
+
+    if(document.getElementById("searchSection").hidden)
+      document.getElementById("tableSection").style.height ="95%"
+    else
+      document.getElementById("tableSection").style.height ="82.7%"
+  }
 }

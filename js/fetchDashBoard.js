@@ -58,28 +58,23 @@ async function addContactFunction() {
     const lastName = document.getElementById("add-last-name").value;
     const email = document.getElementById("add-email").value;
     const phoneNumber = document.getElementById("add-phone").value;
-
+    clearAddInput();
     //missing field message
-    let str="Required:\n ";
     let missing = false;
     if(firstName==""){
-        str+="First Name\n ";
         missing=true;
     }
-    if(lastName==""){
-        str+="Last Name\n ";
+    else if(lastName==""){
         missing=true;
     }
-    if(phoneNumber==""){
-        str+="Phone Number\n ";
+    else if(phoneNumber==""){
         missing=true;
     }
-    if(email==""){
-        str+="Email\n ";
+    else if(email==""){
         missing=true;
     }
     if(missing){
-        document.getElementById("add-result").textContent = str;
+        document.getElementById("add-result").textContent = "Missing Required Field";
         return;
     }
 
@@ -111,9 +106,6 @@ async function addContactFunction() {
     } catch (error) {
       document.getElementById("add-result").textContent = `Error: ${error.message}`;
     }
-
-    //remove values in input boxes after pressing the button
-    clearInput();
 }
 
 let contactIdToDelete = null;
@@ -221,20 +213,28 @@ function showSearchSection() {
     if(document.getElementById('searchSection').hidden){
         document.getElementById('searchSection').hidden=false;
         document.getElementById('search-title').hidden=false;
+
+        if(document.getElementById("addSection").hidden)
+            document.getElementById("tableSection").style.height ="82.7%"
+          else
+            document.getElementById("tableSection").style.height ="70.4%"
     }
     //hide section if shown
     else{
         document.getElementById('searchSection').hidden=true;
         document.getElementById('search-title').hidden=true;
+
+        if(document.getElementById("addSection").hidden)
+            document.getElementById("tableSection").style.height ="95%"
+          else
+            document.getElementById("tableSection").style.height ="82.7%"
     }
 }
 
 //reset search options the search section
 function resetSearchSection() {
-    const arr = document.getElementsByClassName("search-input");
-    for(let i = 0; i < arr.length; i++){
-        arr[i].value='';
-    }
+    clearSearchInput();
+    fetchContactsByUid();
 }
 
 // Search contacts based on input fields and display in the table
