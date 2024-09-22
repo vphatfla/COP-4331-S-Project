@@ -6,33 +6,38 @@
   height: var(--top-nav-height);
   justify-content: center;
 }
+
+
 body {
   font-family: Arial, sans-serif;
   display: block;
   justify-content: center;
   height: 99%;
-  background-color: #f4f4f4;
+  background-image: url("greycreamback.jpeg");
+  background-repeat: no-repeat, repeat;
+  background-color: #f4f4f4; 
+  background-size: cover;
   margin-bottom: 0px;
 }
 #logout-button{
   right: 0%;
   position: absolute;
-  font-size: 20px;
+  font-size: 30px;
   margin-right: 10px;
   width: auto;
-  background-color: #f1f1f1;
-  color: black;
-  border-radius: 5px;
-  padding: 0.5rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 10px;
 }
 #logout-button:hover{
-  background-color: #0056b3;
+  background-color: darkgrey;
 }
 .container {
   width: 80%;
   height: 80%;
   padding: 20px;
-  background-color: white;
+  background-color: #f7f7f6;
   margin: auto;
   border: 1px solid black;
   border-radius: 25px;
@@ -151,15 +156,15 @@ hr {
   padding: 20px;
 }
 #add-button, #search-button{
-  background-color: #f1f1f1;
-  color: black;
+  background-color: black;
+  color: white;
   width: 100px;
   border-radius: 5px;
   font-size: 20px;
   padding: 0.15rem;
 }
 #add-button:hover, #search-button:hover{
-  background-color: #b5b5b5;
+  background-color: darkgrey;
 }
 .add-input{
   width: 15%;
@@ -173,6 +178,7 @@ table {
   border-collapse: collapse; 
   width: 100%; 
 }
+
 th, td { 
   border-bottom: 1px solid #dddddd;
   background: white; 
@@ -180,6 +186,7 @@ th, td {
   padding: 10px 0px;
   width: 20%;
   text-align: left;
+  background-color: #f7f7f6; 
 }
 table button{
   font-size: 18px;
