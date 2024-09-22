@@ -17,13 +17,14 @@ body {
 #logout-button{
   right: 0%;
   position: absolute;
-  font-size: 30px;
+  font-size: 20px;
   margin-right: 10px;
   width: auto;
   background-color: #007BFF;
   color: white;
   border: none;
   border-radius: 10px;
+  padding: 0.5rem;
 }
 #logout-button:hover{
   background-color: #0056b3;
