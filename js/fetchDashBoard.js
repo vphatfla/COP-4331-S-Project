@@ -42,8 +42,8 @@ async function displayContacts(res) {
             <td>${contact.firstName}</td>
             <td>${contact.lastName}</td>
             <td>${contact.phoneNumber}</td>
-	    <td>${contact.email}</td>
-            <td>
+	        <td>${contact.email}</td>
+            <td class='table-buttons'>
                 <button onclick="showUpdatePopup(${contact.id}, '${contact.phoneNumber}', '${contact.firstName}', '${contact.lastName}', '${contact.email}')">Update</button>
                 <button onclick="showDeletePopup(${contact.id})">Delete</button>
             </td>
@@ -58,6 +58,25 @@ async function addContactFunction() {
     const lastName = document.getElementById("add-last-name").value;
     const email = document.getElementById("add-email").value;
     const phoneNumber = document.getElementById("add-phone").value;
+    clearAddInput();
+    //missing field message
+    let missing = false;
+    if(firstName==""){
+        missing=true;
+    }
+    else if(lastName==""){
+        missing=true;
+    }
+    else if(phoneNumber==""){
+        missing=true;
+    }
+    else if(email==""){
+        missing=true;
+    }
+    if(missing){
+        document.getElementById("add-result").textContent = "Missing Required Field";
+        return;
+    }
 
     // Construct the payload
     const payload = {
@@ -188,14 +207,34 @@ function confirmUpdate() {
     closeUpdatePopup();  // Close the popup
 }
 
-// Show the search section
+// Show and hide the search section
 function showSearchSection() {
-    document.getElementById('searchSection').style.display = 'block';
+    //show search section if hidden
+    if(document.getElementById('searchSection').hidden){
+        document.getElementById('searchSection').hidden=false;
+        document.getElementById('search-title').hidden=false;
+
+        if(document.getElementById("addSection").hidden)
+            document.getElementById("tableSection").style.height ="82.7%"
+          else
+            document.getElementById("tableSection").style.height ="70.4%"
+    }
+    //hide section if shown
+    else{
+        document.getElementById('searchSection').hidden=true;
+        document.getElementById('search-title').hidden=true;
+
+        if(document.getElementById("addSection").hidden)
+            document.getElementById("tableSection").style.height ="95%"
+          else
+            document.getElementById("tableSection").style.height ="82.7%"
+    }
 }
 
-// Hide the search section
+//reset search options the search section
 function resetSearchSection() {
-    document.getElementById('searchSection').style.display = 'none';
+    clearSearchInput();
+    fetchContactsByUid();
 }
 
 // Search contacts based on input fields and display in the table
