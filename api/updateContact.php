@@ -85,15 +85,12 @@ if (
         if ($stmt->execute()) {
             if ($stmt->rowCount() > 0) {
                 http_response_code(200); 
-                echo json_encode(["message" => "Contact updated successfully."]);
             } else {
                 // No changes were made
                 http_response_code(200); 
-                echo json_encode(["message" => "No changes were made to the contact."]);
             }
         } else {
             http_response_code(500);
-            echo json_encode(["message" => "Failed to update contact."]);
         }
 
 
