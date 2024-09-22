@@ -4,14 +4,34 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-image: url("greycreamback.jpeg");
+    background-repeat: no-repeat, repeat;
+    background-color: #f4f4f4; 
+    background-size: cover;
 }
 
 .container {
-    width: 60%;
+    width: 50%;
     padding: 20px;
-    background-color: white;
+    background-color: #f7f7f6; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-right: 25px;
+    margin-left: 15px;
+}
+
+h1{
+    /* display: flex; */
+    color: black;
+    font-size: 45px;
+    margin-left: 25px;
+    width: 40%;
+    margin-right: 5px;
+    margin-left: 15px;
+
 }
 
 input {
@@ -23,14 +43,11 @@ input {
     border-radius: 5px;
 }
 
-input:required {
-    border-left: 5px solid red;
-}
 
 button {
     width: 100%;
     padding: 10px;
-    background-color: #007BFF;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 5px;
@@ -38,7 +55,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: darkgrey;
 }
 
 .message {
