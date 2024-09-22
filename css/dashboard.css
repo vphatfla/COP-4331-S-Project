@@ -8,8 +8,9 @@
 }
 
 h2{
-  font-size: 30px;;
+  font-size: 30px;
 }
+
 body {
   font-family: Arial, sans-serif;
   display: block;
@@ -62,9 +63,7 @@ body {
   width: 15%;
   margin-right: 20px;
 }
-#search-button, #add-button{
-  height: 30px;
-}
+
 #search-title, #add-title{
   margin-bottom: 10px;
   width: 100%;
@@ -165,6 +164,7 @@ hr {
   width: 100px;
   border-radius: 5px;
   font-size: 20px;
+  padding: 0.15rem;
 }
 #add-button:hover, #search-button:hover{
   background-color: darkgrey;
@@ -181,6 +181,7 @@ table {
   border-collapse: collapse; 
   width: 100%; 
 }
+
 th, td { 
   border-bottom: 1px solid #dddddd;
   background: white; 
