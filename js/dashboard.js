@@ -20,6 +20,10 @@ function resetResults(){
 }
 function logoutButton(){
   window.location.href = 'index.html';
+  resetResults();
+  clearAddInput();
+  clearSearchInput();
+  document.getElementById("tableSection").hidden=true;
 }
 //for styling
 function createContactList(){
@@ -29,13 +33,24 @@ function createContactList(){
     const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td>First Name</td>
-      <td>Last Name</td>
-      <td>Phone Number</td>
-	    <td>Email@email.com</td>
+      <td><span id=${'first-name'+i}>First Name</span>
+        <input type="text" id="${'input-first-name'+i}" hidden/>
+      </td>
+      <td><span id=${'last-name'+i}>Last Name</span>
+        <input type="text" id="${'input-last-name'+i}" hidden/>
+      </td>
+      <td><span id=${'phone'+i}>Phone Number</span>
+        <input type="text" id="${'input-phone'+i}" hidden/>
+      </td>
+	    <td><span id=${'email'+i}>Email</span>
+        <input type="text" id="${'input-email'+i}" hidden/>
+      </td>
       <td class='table-buttons'>
-        <button onclick="showUpdatePopup(1, '123', 'Alice', 'Bob', 'email.com')">Update</button>
-        <button onclick="showDeletePopup(1)">Delete</button>
+        <button id=${'update-button'+i} onclick="showUpdatePopup(${i}, '123', 'Alice', 'Bob', 'email.com')">Update</button>
+        <button id=${'update-update-button'+i} onclick="confirmUpdate()" hidden>Update</button>
+        
+        <button id=${'delete-button'+i} onclick="showDeletePopup(${i})">Delete</button>
+        <button id=${'cancel-update-button'+i} onclick="cancelUpdateButton(${i})" hidden>Cancel</button>
       </td>
     `;
 
@@ -62,4 +77,19 @@ function showAddSection(){
     else
       document.getElementById("tableSection").style.height ="82.7%"
   }
+}
+function cancelUpdateButton(contactId){
+  document.getElementById('first-name'+contactId).hidden=false;
+  document.getElementById('input-first-name'+contactId).hidden=true;
+  document.getElementById('last-name'+contactId).hidden=false;
+  document.getElementById('input-last-name'+contactId).hidden=true;
+  document.getElementById('phone'+contactId).hidden=false;
+  document.getElementById('input-phone'+contactId).hidden=true;
+  document.getElementById('email'+contactId).hidden=false;
+  document.getElementById('input-email'+contactId).hidden=true;
+
+  document.getElementById('update-button'+contactId).hidden=false;
+  document.getElementById('update-update-button'+contactId).hidden=true;
+  document.getElementById('delete-button'+contactId).hidden=false;
+  document.getElementById('cancel-update-button'+contactId).hidden=true;
 }

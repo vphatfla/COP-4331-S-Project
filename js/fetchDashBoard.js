@@ -39,13 +39,24 @@ async function displayContacts(res) {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${contact.firstName}</td>
-            <td>${contact.lastName}</td>
-            <td>${contact.phoneNumber}</td>
-	        <td>${contact.email}</td>
+            <td><span id=${'first-name'+contact.id}>${contact.firstName}</span>
+                <input type="text" id="${'input-first-name'+contact.id}" hidden/>
+            </td>
+            <td><span id=${'last-name'+contact.id}>${contact.lastName}</span>
+                <input type="text" id="${'input-last-name'+contact.id}" hidden/>
+            </td>
+            <td><span id=${'phone'+contact.id}>${contact.phoneNumber}</span>
+                <input type="text" id="${'input-phone'+contact.id}" hidden/>
+            </td>
+                <td><span id=${'email'+contact.id}>${contact.email}</span>
+                <input type="text" id="${'input-email'+contact.id}" hidden/>
+            </td>
             <td class='table-buttons'>
-                <button onclick="showUpdatePopup(${contact.id}, '${contact.phoneNumber}', '${contact.firstName}', '${contact.lastName}', '${contact.email}')">Update</button>
-                <button onclick="showDeletePopup(${contact.id})">Delete</button>
+                <button id=${'update-button'+contact.id} onclick="showUpdatePopup(${contact.id}, '${contact.phoneNumber}', '${contact.firstName}', '${contact.lastName}', '${contact.email}')">Update</button>
+                <button id=${'update-update-button'+contact.id} onclick="confirmUpdate()" hidden>Update</button>
+                
+                <button id=${'delete-button'+contact.id} onclick="showDeletePopup(${contact.id})">Delete</button>
+                <button id=${'cancel-update-button'+contact.id} onclick="cancelUpdateButton(${contact.id})" hidden>Cancel</button>
             </td>
         `;
 
@@ -99,13 +110,14 @@ async function addContactFunction() {
       const result = await response.json();
       if (response.ok) {
         document.getElementById("add-result").textContent = "Contact added successfully!";
-      	fetchContactsByUid();
+      	//fetchContactsByUid();
       } else {
         document.getElementById("add-result").textContent = `Error: ${result.message || 'Failed to add contact'}`;
       }
     } catch (error) {
       document.getElementById("add-result").textContent = `Error: ${error.message}`;
     }
+    resetResults();
 }
 
 let contactIdToDelete = null;
@@ -139,11 +151,11 @@ function confirmDelete() {
             if (data.success) {
                 window.location.reload();  // Reload the page on success
             } else {
-                alert(`Error deleting contact: ${data.message}`);
+                console.error(`Error deleting contact: ${data.message}`);
             	window.location.reload();
 	    }
         })
-        .catch(error => alert(`Error: ${error.message}`));
+        .catch(error => console.error(`Error: ${error.message}`));
     }
     closeDeletePopup();  // Close the popup
 }
@@ -157,28 +169,44 @@ let contactToUpdate = null; // Variable to store the contact ID
 function showUpdatePopup(contactId, phoneNumber, firstName, lastName, email) {
     contactToUpdate = contactId;
     
+    //replace values in row to input
+    document.getElementById('first-name'+contactId).hidden=true;
+    document.getElementById('input-first-name'+contactId).hidden=false;
+    document.getElementById('last-name'+contactId).hidden=true;
+    document.getElementById('input-last-name'+contactId).hidden=false;
+    document.getElementById('phone'+contactId).hidden=true;
+    document.getElementById('input-phone'+contactId).hidden=false;
+    document.getElementById('email'+contactId).hidden=true;
+    document.getElementById('input-email'+contactId).hidden=false;
+
+    //replace delete button with cancel
+    document.getElementById('update-button'+contactId).hidden=true;
+    document.getElementById('update-update-button'+contactId).hidden=false;
+
+    document.getElementById('delete-button'+contactId).hidden=true;
+    document.getElementById('cancel-update-button'+contactId).hidden=false;
+
     // Prepopulate the input fields with the existing values
-    document.getElementById('update-phone').value = phoneNumber;
-    document.getElementById('update-first-name').value = firstName;
-    document.getElementById('update-last-name').value = lastName;
-    document.getElementById('update-email').value = email;
-    
-    // Show the popup
-    document.getElementById('updateContactPopup').style.display = 'flex';
+    document.getElementById('input-first-name'+contactId).value = firstName;
+    document.getElementById('input-last-name'+contactId).value = lastName;
+    document.getElementById('input-phone'+contactId).value = phoneNumber;
+    document.getElementById('input-email'+contactId).value = email;
 }
 
 // Function to close the popup without updating
 function closeUpdatePopup() {
-    document.getElementById('updateContactPopup').style.display = 'none';  // Hide the popup
+    document.getElementById('updateContactPopup').hidden = true;
+    document.getElementById('tableSection').hidden = false;
+    document.getElementById('add-search').hidden=false;
 }
 
 // Function to send the updated contact information to the API
 function confirmUpdate() {
     if (contactToUpdate !== null) {
-        const updatedPhoneNumber = document.getElementById('update-phone').value;
-        const updatedFirstName = document.getElementById('update-first-name').value;
-        const updatedLastName = document.getElementById('update-last-name').value;
-        const updatedEmail = document.getElementById('update-email').value;
+        const updatedPhoneNumber = document.getElementById('input-phone'+contactToUpdate).value;
+        const updatedFirstName = document.getElementById('input-first-name'+contactToUpdate).value;
+        const updatedLastName = document.getElementById('input-last-name'+contactToUpdate).value;
+        const updatedEmail = document.getElementById('input-email'+contactToUpdate).value;
 
         // Send the update request to the API
         fetch(`https://www.contactmanagerteamone.one/api/updateContact.php`, {
@@ -198,13 +226,13 @@ function confirmUpdate() {
             if (data.success) {
                 window.location.reload();  // Reload the page on success
             } else {
-                alert(`Update Status: ${data.message}`);
-		fetchContactsByUid();
+                console.error(`Update Status: ${data.message}`);
+		        //fetchContactsByUid();
             }
         })
-        .catch(error => alert(`Error: ${error.message}`));
+        .catch(error => console.error(`Error: ${error.message}`));
     }
-    closeUpdatePopup();  // Close the popup
+    cancelUpdateButton(contactToUpdate);  // Close the popup
 }
 
 // Show and hide the search section
@@ -229,12 +257,15 @@ function showSearchSection() {
           else
             document.getElementById("tableSection").style.height ="82.7%"
     }
+    fetchContactsByUid();
 }
 
 //reset search options the search section
 function resetSearchSection() {
     clearSearchInput();
-    fetchContactsByUid();
+    //fetchContactsByUid();
+    resetResults(); 
+    document.getElementById("tableSection").hidden=true;
 }
 
 // Search contacts based on input fields and display in the table
@@ -245,6 +276,13 @@ function searchContacts() {
     const phoneNumber = document.getElementById('search-phone-number').value.trim();
     const email = document.getElementById('search-email').value.trim();
     const contactTableBody = document.querySelector('#contactTable tbody');
+
+    //return if all search input empty
+    if(firstName=="" && lastName=="" && phoneNumber=="" && email==""){
+        document.getElementById("tableSection").hidden=true;
+        document.getElementById("search-result").textContent="Requires at least one search"
+        return;
+    }
 
     // Construct the JSON payload with non-empty fields
     const payload = {
@@ -266,8 +304,10 @@ function searchContacts() {
     .then(response => displayContacts(response))
     .catch(error => {
 	    const row = document.createElement('tr');
-        row.innerHTML = `<td colspan="4">No Contacts Found!</td>`;
+        row.innerHTML = `<td colspan="5">No Contacts Found!</td>`;
         contactTableBody.appendChild(row);
     });
+    document.getElementById("tableSection").hidden=false;
+    resetResults();
 }
 
