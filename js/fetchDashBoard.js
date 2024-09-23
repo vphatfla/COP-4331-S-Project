@@ -76,6 +76,7 @@ async function addContactFunction() {
     }
     if(missing){
         document.getElementById("add-result").textContent = "Missing Required Field";
+        document.getElementById("add-result").style.color='red';
         return;
     }
 	
@@ -102,6 +103,7 @@ async function addContactFunction() {
       const result = await response.json();
       if (response.ok) {
         document.getElementById("add-result").textContent = "Contact added successfully!";
+        document.getElementById("add-result").style.color='green';
       	fetchContactsByUid();
       } else {
         document.getElementById("add-result").textContent = `Error: ${result.message || 'Failed to add contact'}`;
@@ -138,7 +140,7 @@ function confirmDelete() {
 	    )  // Send the contact ID for deletion
         })
         .then(response => {
-				alert("Delete Contact Successfully!");
+            console.error("Delete Contact Successfully!");
 				fetchContactsByUid();
 		})
         
@@ -156,6 +158,10 @@ let contactToUpdate = null; // Variable to store the contact ID
 function showUpdatePopup(contactId, phoneNumber, firstName, lastName, email) {
     contactToUpdate = contactId;
     
+    document.getElementsByClassName('container')[0].hidden=true;
+    document.getElementById('add-search').hidden=true;
+    document.getElementById('updateContactPopup').hidden=false;
+
     // Prepopulate the input fields with the existing values
     document.getElementById('update-phone').value = phoneNumber;
     document.getElementById('update-first-name').value = firstName;
@@ -163,12 +169,15 @@ function showUpdatePopup(contactId, phoneNumber, firstName, lastName, email) {
     document.getElementById('update-email').value = email;
     
     // Show the popup
-    document.getElementById('updateContactPopup').style.display = 'flex';
+    //document.getElementById('updateContactPopup').style.display = 'flex';
 }
 
 // Function to close the popup without updating
 function closeUpdatePopup() {
-    document.getElementById('updateContactPopup').style.display = 'none';  // Hide the popup
+    //document.getElementById('updateContactPopup').style.display = 'none';  // Hide the popup
+    document.getElementsByClassName('container')[0].hidden=false;
+    document.getElementById('add-search').hidden=false;
+    document.getElementById('updateContactPopup').hidden=true;
 }
 
 // Function to send the updated contact information to the API
@@ -193,10 +202,10 @@ function confirmUpdate() {
             })
         })
 	    .then(response => {
-	   		alert('Update Contact Successfully!');
+	   		console.error('Update Contact Successfully!');
 			fetchContactsByUid();
 	    })
-        .catch(error => alert(`Error: ${error.message}`));
+        .catch(error => console.error(`Error: ${error.message}`));
     }
     closeUpdatePopup();  // Close the popup
 }
@@ -209,9 +218,9 @@ function showSearchSection() {
         document.getElementById('search-title').hidden=false;
 
         if(document.getElementById("addSection").hidden)
-            document.getElementById("tableSection").style.height ="82.7%"
+            document.getElementById("tableSection").style.height ="77.7%"
           else
-            document.getElementById("tableSection").style.height ="70.4%"
+            document.getElementById("tableSection").style.height ="65.4%"
     }
     //hide section if shown
     else{
@@ -219,9 +228,9 @@ function showSearchSection() {
         document.getElementById('search-title').hidden=true;
 
         if(document.getElementById("addSection").hidden)
-            document.getElementById("tableSection").style.height ="95%"
+            document.getElementById("tableSection").style.height ="90%"
           else
-            document.getElementById("tableSection").style.height ="82.7%"
+            document.getElementById("tableSection").style.height ="77.7%"
     }
 }
 
@@ -260,7 +269,7 @@ function searchContacts() {
     .then(response => displayContacts(response))
     .catch(error => {
 	    const row = document.createElement('tr');
-        row.innerHTML = `<td colspan="4">No Contacts Found!</td>`;
+        row.innerHTML = `<td colspan="6">No Contacts Found!</td>`;
         contactTableBody.appendChild(row);
     });
 }
