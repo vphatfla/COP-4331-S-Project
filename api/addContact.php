@@ -66,7 +66,7 @@ if (
     $firstName = $input['firstName'];
     $lastName = $input['lastName'];
     $email = $input['email'];
-
+	$createdAt = $input['createdAt'];
     // Check if phone number exists for this user
     if (checkIfPhoneExists($uid, $phoneNumber)) {
         http_response_code(409);
@@ -80,15 +80,16 @@ if (
         $conn = getConnection();
 
         // SQL query to insert new contact
-        $query = "INSERT INTO Contact (uid, phoneNumber, firstName, lastName, email)
-                  VALUES (:uid, :phoneNumber, :firstName, :lastName, :email)";
+        $query = "INSERT INTO Contact (uid, phoneNumber, firstName, lastName, email, createdAt)
+                  VALUES (:uid, :phoneNumber, :firstName, :lastName, :email, :createdAt)";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':uid', $uid);
         $stmt->bindParam(':phoneNumber', $phoneNumber);
         $stmt->bindParam(':firstName', $firstName);
         $stmt->bindParam(':lastName', $lastName);
-        $stmt->bindParam(':email', $email);
-
+        $stmt->bindparam(':email', $email);
+	    $stmt->bindparam(':createdAt', $createdAt);
+		
         if ($stmt->execute()) {
             http_response_code(200);
             echo json_encode(["message" => "Contact added successfully."]);
