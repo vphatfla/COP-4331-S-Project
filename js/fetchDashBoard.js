@@ -134,16 +134,12 @@ function confirmDelete() {
 			}
 	    )  // Send the contact ID for deletion
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.reload();  // Reload the page on success
-            } else {
-                alert(`Error deleting contact: ${data.message}`);
-            	window.location.reload();
-	    }
-        })
-        .catch(error => alert(`Error: ${error.message}`));
+        .then(response => {
+				alert("Delete Contact Successfully!");
+				fetchContactsByUid();
+		})
+        
+//        .catch(error => alert(`Error: ${error.message}`));
     }
     closeDeletePopup();  // Close the popup
 }
