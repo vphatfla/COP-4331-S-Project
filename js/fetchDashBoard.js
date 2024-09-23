@@ -86,6 +86,7 @@ async function addContactFunction() {
     }
     if(missing){
         document.getElementById("add-result").textContent = "Missing Required Field";
+        document.getElementById("add-result").style.color='red';
         return;
     }
 
@@ -110,6 +111,7 @@ async function addContactFunction() {
       const result = await response.json();
       if (response.ok) {
         document.getElementById("add-result").textContent = "Contact added successfully!";
+        document.getElementById("add-result").style.color='green';
       	//fetchContactsByUid();
       } else {
         document.getElementById("add-result").textContent = `Error: ${result.message || 'Failed to add contact'}`;
@@ -207,7 +209,7 @@ function confirmUpdate() {
         const updatedFirstName = document.getElementById('input-first-name'+contactToUpdate).value;
         const updatedLastName = document.getElementById('input-last-name'+contactToUpdate).value;
         const updatedEmail = document.getElementById('input-email'+contactToUpdate).value;
-
+        
         // Send the update request to the API
         fetch(`https://www.contactmanagerteamone.one/api/updateContact.php`, {
             method: 'POST',
@@ -224,7 +226,12 @@ function confirmUpdate() {
 	    .then(response => response.json())
         .then(data => {
             if (data.success) {
-                window.location.reload();  // Reload the page on success
+                //window.location.reload();  // Reload the page on success
+                //update text in contact list
+                document.getElementById('first-name'+contactToUpdate).textContent=updatedFirstName;
+                document.getElementById('last-name'+contactToUpdate).textContent=updatedLastName;
+                document.getElementById('phone'+contactToUpdate).textContent=updatedPhoneNumber;
+                document.getElementById('email'+contactToUpdate).textContent=updatedEmail;
             } else {
                 console.error(`Update Status: ${data.message}`);
 		        //fetchContactsByUid();
