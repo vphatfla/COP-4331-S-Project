@@ -19,12 +19,12 @@
 
     <div id="add-search">
         <!-- Add Button to show the add section -->
-        <button id="add-button" onclick="showAddSection()" hidden>Add</button>
+        <button id="add-button" onclick="showAddSection()">Add</button>
         <!-- Search Button to show the search section -->
-        <button id="search-button" onclick="showSearchSection()" hidden>Search</button>
+        <button id="search-button" onclick="showSearchSection()">Search</button>
             
-        <h3 id="add-title">Add a new contact</h3>
-        <div id="addSection" >
+        <h3 id="add-title" hidden>Add a new contact</h3>
+        <div id="addSection" hidden>
             <input type="text" class="add-input" id="add-first-name" placeholder="First Name"/>
             <span class="required-asterisk">*</span>
             <input type="text" class="add-input" id="add-last-name" placeholder="Last Name"/>
@@ -39,8 +39,8 @@
         </div>
             
         <!-- Hidden Search Section -->
-        <h3 id="search-title">Search by:</h3>
-        <div id="searchSection" >
+        <h3 id="search-title" hidden>Search by:</h3>
+        <div id="searchSection" hidden>
             <input type="text" class="search-input" id="search-first-name" name="firstName" placeholder="First Name"><br><br>
             <input type="text" class="search-input" id="search-last-name" name="lastName" placeholder="Last Name"><br><br>
             <input type="text" class="search-input" id="search-phone-number" name="phoneNumber" placeholder="Phone Number"><br><br>

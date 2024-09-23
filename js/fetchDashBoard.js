@@ -151,7 +151,7 @@ function confirmDelete() {
 	    )  // Send the contact ID for deletion
         })
         .then(response => {
-				alert("Delete Contact Successfully!");
+            console.error("Delete Contact Successfully!");
 				fetchContactsByUid();
 		})
         
@@ -222,10 +222,10 @@ function confirmUpdate() {
             })
         })
 	    .then(response => {
-	   		alert('Update Contact Successfully!');
+            console.error('Update Contact Successfully!');
 			fetchContactsByUid();
 	    })
-        .catch(error => alert(`Error: ${error.message}`));
+        .catch(error => console.error(`Error: ${error.message}`));
     }
     cancelUpdateButton(contactToUpdate);  // Close the popup
 }
@@ -238,9 +238,9 @@ function showSearchSection() {
         document.getElementById('search-title').hidden=false;
 
         if(document.getElementById("addSection").hidden)
-            document.getElementById("tableSection").style.height ="82.7%"
+            document.getElementById("tableSection").style.height ="82%"
           else
-            document.getElementById("tableSection").style.height ="70.4%"
+            document.getElementById("tableSection").style.height ="70%"
     }
     //hide section if shown
     else{
@@ -248,11 +248,11 @@ function showSearchSection() {
         document.getElementById('search-title').hidden=true;
 
         if(document.getElementById("addSection").hidden)
-            document.getElementById("tableSection").style.height ="95%"
+            document.getElementById("tableSection").style.height ="92%"
           else
-            document.getElementById("tableSection").style.height ="82.7%"
+            document.getElementById("tableSection").style.height ="82%"
     }
-    fetchContactsByUid();
+    //fetchContactsByUid();
 }
 
 //reset search options the search section
@@ -299,7 +299,7 @@ function searchContacts() {
     .then(response => displayContacts(response))
     .catch(error => {
 	    const row = document.createElement('tr');
-        row.innerHTML = `<td colspan="5">No Contacts Found!</td>`;
+        row.innerHTML = `<td colspan="6">No Contacts Found!</td>`;
         contactTableBody.appendChild(row);
     });
     document.getElementById("tableSection").hidden=false;

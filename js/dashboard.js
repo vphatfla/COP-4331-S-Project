@@ -64,18 +64,18 @@ function showAddSection(){
     document.getElementById("add-title").hidden=false;
     
     if(document.getElementById("searchSection").hidden)
-      document.getElementById("tableSection").style.height ="82.7%"
+      document.getElementById("tableSection").style.height ="82%"
     else
-      document.getElementById("tableSection").style.height ="70.4%"
+      document.getElementById("tableSection").style.height ="70%"
   }
   else{
     document.getElementById("addSection").hidden=true;
     document.getElementById("add-title").hidden=true;
 
     if(document.getElementById("searchSection").hidden)
-      document.getElementById("tableSection").style.height ="95%"
+      document.getElementById("tableSection").style.height ="92%"
     else
-      document.getElementById("tableSection").style.height ="82.7%"
+      document.getElementById("tableSection").style.height ="82%"
   }
 }
 function cancelUpdateButton(contactId){
