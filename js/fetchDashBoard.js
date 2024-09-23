@@ -89,14 +89,16 @@ async function addContactFunction() {
         document.getElementById("add-result").style.color='red';
         return;
     }
-
+	
+	const createdAt = new Date(Date.now()).toLocaleString()
     // Construct the payload
     const payload = {
       uid: localStorage.getItem("uid"),
       phoneNumber: phoneNumber,
       firstName: firstName,
       lastName: lastName,
-      email: email
+      email: email,
+	  createdAt: createdAt
     };
 
     try {
@@ -148,16 +150,12 @@ function confirmDelete() {
 			}
 	    )  // Send the contact ID for deletion
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.reload();  // Reload the page on success
-            } else {
-                console.error(`Error deleting contact: ${data.message}`);
-            	window.location.reload();
-	    }
-        })
-        .catch(error => console.error(`Error: ${error.message}`));
+        .then(response => {
+				alert("Delete Contact Successfully!");
+				fetchContactsByUid();
+		})
+        
+//        .catch(error => alert(`Error: ${error.message}`));
     }
     closeDeletePopup();  // Close the popup
 }
@@ -223,21 +221,11 @@ function confirmUpdate() {
                 email: updatedEmail
             })
         })
-	    .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                //window.location.reload();  // Reload the page on success
-                //update text in contact list
-                document.getElementById('first-name'+contactToUpdate).textContent=updatedFirstName;
-                document.getElementById('last-name'+contactToUpdate).textContent=updatedLastName;
-                document.getElementById('phone'+contactToUpdate).textContent=updatedPhoneNumber;
-                document.getElementById('email'+contactToUpdate).textContent=updatedEmail;
-            } else {
-                console.error(`Update Status: ${data.message}`);
-		        //fetchContactsByUid();
-            }
-        })
-        .catch(error => console.error(`Error: ${error.message}`));
+	    .then(response => {
+	   		alert('Update Contact Successfully!');
+			fetchContactsByUid();
+	    })
+        .catch(error => alert(`Error: ${error.message}`));
     }
     cancelUpdateButton(contactToUpdate);  // Close the popup
 }
