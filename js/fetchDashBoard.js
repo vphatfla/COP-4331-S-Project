@@ -43,6 +43,7 @@ async function displayContacts(res) {
             <td>${contact.lastName}</td>
             <td>${contact.phoneNumber}</td>
 	        <td>${contact.email}</td>
+			<td>${contact.createdAt}</td>
             <td class='table-buttons'>
                 <button onclick="showUpdatePopup(${contact.id}, '${contact.phoneNumber}', '${contact.firstName}', '${contact.lastName}', '${contact.email}')">Update</button>
                 <button onclick="showDeletePopup(${contact.id})">Delete</button>
@@ -77,14 +78,16 @@ async function addContactFunction() {
         document.getElementById("add-result").textContent = "Missing Required Field";
         return;
     }
-
+	
+	const createdAt = new Date(Date.now()).toLocaleString()
     // Construct the payload
     const payload = {
       uid: localStorage.getItem("uid"),
       phoneNumber: phoneNumber,
       firstName: firstName,
       lastName: lastName,
-      email: email
+      email: email,
+	  createdAt: createdAt
     };
 
     try {
@@ -134,16 +137,12 @@ function confirmDelete() {
 			}
 	    )  // Send the contact ID for deletion
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.reload();  // Reload the page on success
-            } else {
-                alert(`Error deleting contact: ${data.message}`);
-            	window.location.reload();
-	    }
-        })
-        .catch(error => alert(`Error: ${error.message}`));
+        .then(response => {
+				alert("Delete Contact Successfully!");
+				fetchContactsByUid();
+		})
+        
+//        .catch(error => alert(`Error: ${error.message}`));
     }
     closeDeletePopup();  // Close the popup
 }
@@ -193,15 +192,10 @@ function confirmUpdate() {
                 email: updatedEmail
             })
         })
-	    .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.reload();  // Reload the page on success
-            } else {
-                alert(`Update Status: ${data.message}`);
-		fetchContactsByUid();
-            }
-        })
+	    .then(response => {
+	   		alert('Update Contact Successfully!');
+			fetchContactsByUid();
+	    })
         .catch(error => alert(`Error: ${error.message}`));
     }
     closeUpdatePopup();  // Close the popup
