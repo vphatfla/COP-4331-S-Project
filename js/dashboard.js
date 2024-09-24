@@ -12,7 +12,7 @@ function clearSearchInput(){
     arr[i].value='';
   }
 }
-function resetResults(){
+function clearResults(){
   const arr = document.getElementsByClassName("results");
   for(let i = 0; i < arr.length; i++){
     arr[i].innerHTML='';
@@ -33,6 +33,7 @@ function createContactList(){
       <td>Last Name</td>
       <td>Phone Number</td>
 	    <td>Email@email.com</td>
+      <td>Date</td>
       <td class='table-buttons'>
         <button onclick="showUpdatePopup(1, '123', 'Alice', 'Bob', 'email.com')">Update</button>
         <button onclick="showDeletePopup(1)">Delete</button>
@@ -45,21 +46,22 @@ function createContactList(){
 function showAddSection(){
   if(document.getElementById("addSection").hidden){
     clearAddInput();
+    clearResults();
     document.getElementById("addSection").hidden=false;
     document.getElementById("add-title").hidden=false;
     
     if(document.getElementById("searchSection").hidden)
-      document.getElementById("tableSection").style.height ="82.7%"
+      document.getElementById("tableSection").style.height ="77.7%"
     else
-      document.getElementById("tableSection").style.height ="70.4%"
+      document.getElementById("tableSection").style.height ="65.4%"
   }
   else{
     document.getElementById("addSection").hidden=true;
     document.getElementById("add-title").hidden=true;
 
     if(document.getElementById("searchSection").hidden)
-      document.getElementById("tableSection").style.height ="95%"
+      document.getElementById("tableSection").style.height ="90%"
     else
-      document.getElementById("tableSection").style.height ="82.7%"
+      document.getElementById("tableSection").style.height ="77.7%"
   }
 }

@@ -17,37 +17,41 @@
 
 <div class="container">
 
-    <!-- Add Button to show the add section -->
-    <button id="add-button" onclick="showAddSection()">Add</button>
-    <!-- Search Button to show the search section -->
-    <button id="search-button" onclick="showSearchSection()">Search</button>
-        
-    <h3 id="add-title" hidden>Add a new contact</h3>
-    <div id="addSection" hidden>
-        <input type="text" class="add-input" id="add-first-name" placeholder="First Name"/>
-        <span class="required-asterisk">*</span>
-        <input type="text" class="add-input" id="add-last-name" placeholder="Last Name"/>
-        <span class="required-asterisk">*</span>
-        <input type="text" class="add-input" id="add-phone" placeholder="Phone Number"/>
-        <span class="required-asterisk">*</span>
-        <input type="text" class="add-input" id="add-email" placeholder="Email"/>
-        <span class="required-asterisk">*</span>
+    <div id="add-search">
+        <!-- Add Button to show the add section -->
+        <button id="add-button" onclick="showAddSection()">Add</button>
+        <!-- Search Button to show the search section -->
+        <button id="search-button" onclick="showSearchSection()">Search</button>
+            
+        <h3 id="add-title" hidden>Add a new contact</h3>
+        <div id="addSection" hidden>
+            <input type="text" class="add-input" id="add-first-name" placeholder="First Name"/>
+            <span class="required-asterisk">*</span>
+            <input type="text" class="add-input" id="add-last-name" placeholder="Last Name"/>
+            <span class="required-asterisk">*</span>
+            <input type="text" class="add-input" id="add-phone" placeholder="Phone Number"/>
+            <span class="required-asterisk">*</span>
+            <input type="text" class="add-input" id="add-email" placeholder="Email"/>
+            <span class="required-asterisk">*</span>
 
-        <button type="button" id="add-section-button" onclick="addContactFunction()">Add</button></br>
-        <span id="add-result" class="results"></span>
+            <button type="button" id="add-section-button" onclick="addContactFunction()">Add</button></br>
+            <span id="add-result" class="results"></span>
+        </div>
+
+        <!-- Hidden Search Section -->
+        <h3 id="search-title" hidden>Search by:</h3>
+        <div id="searchSection" hidden>
+            <input type="text" class="search-input" id="search-first-name" name="firstName" placeholder="First Name"><br><br>
+            <input type="text" class="search-input" id="search-last-name" name="lastName" placeholder="Last Name"><br><br>
+            <input type="text" class="search-input" id="search-phone-number" name="phoneNumber" placeholder="Phone Number"><br><br>
+            <input type="text" class="search-input" id="search-email" name="email" placeholder="Email"><br><br>
+        
+            <button onclick="searchContacts()">Search</button>
+            <button onclick="resetSearchSection()">Reset</button>
+        </div>	
     </div>
         
-    <!-- Hidden Search Section -->
-    <h3 id="search-title" hidden>Search by:</h3>
-    <div id="searchSection" hidden>
-        <input type="text" class="search-input" id="search-first-name" name="firstName" placeholder="First Name"><br><br>
-        <input type="text" class="search-input" id="search-last-name" name="lastName" placeholder="Last Name"><br><br>
-        <input type="text" class="search-input" id="search-phone-number" name="phoneNumber" placeholder="Phone Number"><br><br>
-        <input type="text" class="search-input" id="search-email" name="email" placeholder="Email"><br><br>
     
-        <button onclick="searchContacts()">Search</button>
-        <button onclick="resetSearchSection()">Reset</button>
-    </div>	
    	 <!-- Table to display contacts -->
     <div id="tableSection">
         <table id="contactTable">
@@ -57,7 +61,7 @@
                     <th>Last Name</th>
                     <th>Phone Number</th>
                     <th>Email</th>
-		    <th>Created At</th>
+		            <th>Created At</th>
                     <th></th>
                 </tr>
             </thead>
@@ -66,6 +70,8 @@
             </tbody>
         </table>
     </div>
+
+    
 </div>
 
 <!-- Hidden Popup Box -->
@@ -81,9 +87,8 @@
 		</div>
 	</div>
 </div>
-
 <!-- Hidden Popup Box for Updating Contact -->
-<div id="updateContactPopup" class="popup-box">
+<div id="updateContactPopup" class="popup-box" hidden>
     <div class="popup-content">
         <h1>Update Contact</h1>
         
@@ -104,10 +109,9 @@
         <input type="email" id="update-email" placeholder="Email" /><br /><br />
 
         <button onclick="closeUpdatePopup()" class="buttons">Cancel</button>
-	    <button onclick="confirmUpdate()" class="buttons">Confirm</button>
+        <button onclick="confirmUpdate()" class="buttons">Confirm</button>
     </div>
 </div>
-
 
 <script>
     window.onload = function() {
